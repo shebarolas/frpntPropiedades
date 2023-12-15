@@ -1,0 +1,25 @@
+.success{
+    display: grid;
+    height: 100vh;
+    width: 100%;
+    place-items: center;
+    background-color: #6b9795;
+
+}
+.sWrapper{
+    display: grid;
+    border: 1px solid #6b9795;
+    height: 30rem;
+    width: 40rem;
+    place-items: center;
+    border-radius: .5rem;
+    box-shadow: 0px 13px 25px 5px rgba(0,0,0,0.1);
+}
+.sWrapSuc{
+    display: grid;
+    place-items: center;
+}
+.btnSuc{
+    width: 10rem;
+    height: 3rem;
+}

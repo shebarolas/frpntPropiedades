@@ -1,0 +1,8 @@
+.home{
+    display: grid;
+    place-items: center;
+}
+.homeTitle{
+    width: 90rem;
+    font-size: 1.5rem;
+}

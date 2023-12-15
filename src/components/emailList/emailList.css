@@ -1,0 +1,33 @@
+.emailList{
+    width: 100%;
+    background-color: #6b9795;
+    display: grid;
+    margin-top: 1rem;
+    color: white;
+    justify-items: center;
+    padding: 3rem 0rem;
+    gap: 1rem;
+}
+.emialListInputs input:focus{
+    outline: none;
+}
+.emialListInputs input{
+    width: 12rem;
+    height: 2rem;
+    padding: .3rem .5rem .3rem;
+    border: none;
+    border-radius: .5rem;
+}
+.emialListInputs{
+    display:grid;
+    grid-template-columns: 13rem 1fr;
+    gap: .5rem;
+}
+.emialListInputs button{
+    border: none;
+    border-radius: .5rem;
+    color: white;
+    background-color:  #a0ab94;
+    cursor: pointer;
+    width: 5rem;
+}

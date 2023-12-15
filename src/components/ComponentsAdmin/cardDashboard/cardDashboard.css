@@ -1,0 +1,7 @@
+.ant-col{
+    max-width: none !important;
+}
+.cardDashboard{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

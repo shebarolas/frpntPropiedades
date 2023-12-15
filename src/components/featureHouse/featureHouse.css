@@ -1,0 +1,46 @@
+.featureHouse{
+    display: grid;
+    width: 100%;
+    max-width: 90rem;
+    place-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 2rem;
+}
+.fpItem img{
+    width: 20rem;
+    height: 17rem;
+    object-fit: cover;
+    border-top-right-radius: .5rem;
+    border-top-left-radius: .5rem;
+}
+.fpItem{
+    display: grid;
+    gap: .2rem;
+    border-radius: .5rem;
+    box-shadow: 0px 10px 13px 8px rgba(0,0,0,0.1);
+}
+.fpName{
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.fpCity, .fpPrice, .fpRating, .fpName{
+    padding-left: 1rem;
+}
+.fpRating{
+    padding-bottom: 1rem;
+    display: grid;
+    align-items: center;
+    gap: 1rem;
+    color: #6b9795;
+    font-weight: bold;
+}
+.fpRating button{
+    width: 2rem;
+    height: 1.8rem;
+    border-radius: .5rem;
+    border: none;
+    background-color: #6b9795;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}

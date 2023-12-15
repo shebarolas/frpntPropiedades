@@ -1,0 +1,26 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Nova+Square&family=Nunito&family=Open+Sans:ital@0;1&family=Permanent+Marker&display=swap');
+
+
+.payment{
+    display: grid;
+    width: 100%;
+    height: 100vh;
+    place-items: center;
+    background-color: #6b9795;
+    font-family: 'Nova Square', sans-serif;
+}
+
+.pWrapper{
+    display: grid;
+    place-items: center;
+    height: 40rem;
+    width: 40rem;
+    border: 1px solid gray;
+    border-radius: .5rem;
+    box-shadow: 0px 13px 25px 5px rgba(0,0,0,0.1);
+}
+.pWraTitle{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}

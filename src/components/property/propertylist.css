@@ -1,0 +1,23 @@
+.propertylist{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width:100%;
+    max-width: 90rem;
+    place-items: center;
+    padding: 2rem;
+}
+
+.pListItem img{
+    width: 15rem;
+    height: 15rem;
+    object-fit: cover;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+}
+.pListItem{
+    display: grid;
+    grid-template-rows: 15rem 2rem 2rem;
+}
+.pListTitles{
+    font-size: .8rem;
+}

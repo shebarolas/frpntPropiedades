@@ -1,0 +1,18 @@
+.footer{
+    width:100%;
+    display: grid;
+    margin-top: 2rem;
+}
+.fLists{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+}
+.fListItem{
+    list-style: none;
+}
+.fList{
+    color: #6b9795;
+    display: grid;
+    gap: .5rem;
+}

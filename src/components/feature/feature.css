@@ -1,0 +1,26 @@
+.feature{
+    display: grid;
+    width: 100%;
+    max-width: 90rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: .5rem;
+    margin-top: 2rem;
+    justify-items: center;
+}
+.featureImg{
+    height: 20rem;
+    width: 25rem;
+    border-radius: 1rem;
+    object-fit: cover;
+}
+.featureItem{
+    position: relative;
+    color: white;
+    overflow: hidden;
+    height: 25rem;
+}
+.featureTitles{
+    position: absolute;
+    bottom: 5rem;
+    left: 2rem;
+}

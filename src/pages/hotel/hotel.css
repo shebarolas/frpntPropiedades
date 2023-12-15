@@ -1,0 +1,47 @@
+.hotelListWrapper{
+    width:100%;
+    max-width: 90rem;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr;
+}
+.hotelListSearch input{
+    height:3rem;
+    width: 15rem;
+    padding-left: 1rem;
+    border-radius: .5rem;
+    border: none;
+
+}
+.hotelListSearch input:focus{
+   outline:none;
+}
+.hotelListSearch{
+    display: grid;
+    height: 28rem;
+    width: 19rem;
+    justify-items: center;
+    margin-top: 1rem;
+    border-radius: .5rem;
+    padding: .5rem;
+    gap: .5rem;
+    background-color: #6b9795;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.hotelListSearch button{
+    width:15rem;
+    height:4rem;
+    border-radius: .5rem;
+    cursor: pointer;
+    border: none;
+    background-color: #a0ab94;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold
+}
+.hotelListItems{
+    display: grid;
+}
+.hotel{
+    display: grid;
+}
