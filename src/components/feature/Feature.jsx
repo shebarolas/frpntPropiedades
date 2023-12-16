@@ -3,6 +3,7 @@ import useFetch from "../Hooks/useFecth";
 import Spinner from "../ui/Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faLocation } from "@fortawesome/free-solid-svg-icons";
+import { API_URL } from "../../config/constants";
 
 const places = [
   {
@@ -22,7 +23,7 @@ const places = [
 
 export const Feature = () => {
   const { data, loading } = useFetch(
-    "https://back-arriendos.onrender.com/api/v1/hotel/countCity?cities=Temuco,Angol,Santiago"
+    `${API_URL}/hotel/countCity?cities=Temuco,Angol,Santiago`
   );
 
   if (loading)

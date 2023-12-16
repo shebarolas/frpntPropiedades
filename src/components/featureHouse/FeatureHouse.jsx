@@ -3,12 +3,10 @@ import useFetch from "../Hooks/useFecth";
 import Spinner from "../ui/Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouseFire, faLocation } from "@fortawesome/free-solid-svg-icons";
+import { API_URL } from "../../config/constants";
 
 export const FeatureHouse = () => {
-  const { data, loading } = useFetch(
-    "https://back-arriendos.onrender.com/api/v1/hotel/getAll?featured=true"
-  );
-  console.log(data);
+  const { data, loading } = useFetch(`${API_URL}/hotel/getAll?featured=true`);
 
   if (loading)
     return (

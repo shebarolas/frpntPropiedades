@@ -3,11 +3,10 @@ import useFetch from "../Hooks/useFecth";
 import Spinner from "../ui/Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTypo3 } from "@fortawesome/free-brands-svg-icons";
+import { API_URL } from "../../config/constants";
 
 export const PropertyList = () => {
-  const { data, loading } = useFetch(
-    "https://back-arriendos.onrender.com/api/v1/hotel/countType"
-  );
+  const { data, loading } = useFetch(`${API_URL}/hotel/countType`);
 
   if (loading)
     return (
