@@ -1,0 +1,10 @@
+.loading {
+  min-height: 100vh;
+  background-color: #5ab2ae;
+  display: grid;
+  place-content: center;
+}
+
+.loading h1 {
+  color: #fff;
+}
