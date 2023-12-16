@@ -3,13 +3,14 @@ import './hotel.css';
 import { useLocation } from 'react-router-dom';
 import { SearchItems } from '../../components/searchItems/SearchItems';
 import useFetch from '../../components/Hooks/useFecth';
+import { API_URL } from '../../config/constants';
 
 export const Hotel = () => {
     const {state} = useLocation();
     const [location, setLocation] = useState(state.value);
     const [min, setMin] = useState(undefined);
     const [max, setMax] = useState(undefined);
-    const {data, loading, error, reFetch} = useFetch(`https://back-arriendos.onrender.com/api/v1/hotel/getAll?featured=true&city=${location}&min=${min || 0}&max=${max || 10000000000000}`);
+    const {data, loading, error, reFetch} = useFetch(`${API_URL}/hotel/getAll?featured=true&city=${location}&min=${min || 0}&max=${max || 10000000000000}`);
     console.log(data);
 
     const handleClick = () => {

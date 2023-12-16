@@ -5,13 +5,14 @@ import { useLocation } from 'react-router-dom';
 import useFetch from '../../components/Hooks/useFecth';
 import { useSelector } from 'react-redux';
 import { instance } from '../../config/axios';
+import { API_URL } from '../../config/constants';
 
 export const HotelDisplay = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const id = location.pathname.split("/")[2];
     console.log(id);
-    const { data, loading, error } = useFetch(`https://back-arriendos.onrender.com/api/v1/hotel/getId/${id}`);
+    const { data, loading, error } = useFetch(`${API_URL}/hotel/getId/${id}`);
     console.log(data);
     const { user } = useSelector((state) => state.session)
     console.log(user);

@@ -1,9 +1,12 @@
 import React from 'react'
 import './feature.css';
 import useFetch from '../Hooks/useFecth';
+import { API_URL } from '../../config/constants';
 
 export const Feature = () => {
-  const { data, loading, error } = useFetch("https://back-arriendos.onrender.com/api/v1/hotel/countCity?cities=Temuco,Angol,Santiago");
+  console.log(import.meta.env.VITE_API_URL);
+  
+  const { data, loading, error } = useFetch(`${API_URL}/hotel/countCity?cities=Temuco,Angol,Santiago`);
   console.log(data);
   return (
     <div className="feature">

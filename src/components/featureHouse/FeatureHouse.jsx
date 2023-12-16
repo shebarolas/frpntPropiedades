@@ -1,10 +1,11 @@
 import React from 'react'
 import './featureHouse.css';
 import useFetch from '../Hooks/useFecth';
+import { API_URL } from '../../config/constants';
 
 export const FeatureHouse = () => {
 
-    const { data, loading, error } = useFetch("https://back-arriendos.onrender.com/api/v1/hotel/getAll?featured=true");
+    const { data, loading, error } = useFetch(`${API_URL}/hotel/getAll?featured=true`);
     console.log(data);
     return (
         <div className="featureHouse">

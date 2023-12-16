@@ -1,4 +1,3 @@
-
 import './App.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import routerBasic from './routes/routeBasic';
