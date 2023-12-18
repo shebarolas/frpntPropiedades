@@ -67,7 +67,7 @@ const Header = () => {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                 >
-                  <option selected>Choose a country</option>
+                  <option selected>Selecciona la ciudad</option>
                   <option value="Temuco">Temuco</option>
                   <option value="Angol">Angol</option>
                   <option value="Santiago">Santiago</option>
