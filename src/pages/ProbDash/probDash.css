@@ -1,0 +1,31 @@
+.dash1{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    place-items: center;
+    gap: 1rem;
+}
+.lineChart{
+    height: 25rem;
+    width: 35rem;
+    display: grid;
+    place-items: center;
+    border-radius: .5rem;
+    box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.1);
+}
+.barChart{
+    height: 25rem;
+    width: 35rem;
+    display: grid;
+    place-items: center;
+    border-radius: .5rem;
+    box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.1)
+}
+.pieChart{
+    height: 25rem;
+    width: 35rem;
+    display: grid;
+    place-items: center;
+    border-radius: .5rem;
+    box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.1)
+}

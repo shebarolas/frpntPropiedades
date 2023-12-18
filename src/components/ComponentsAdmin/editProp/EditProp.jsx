@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
-import { Button, Col, Drawer, Form, Input, Row, Select, Space } from 'antd';
+import { Button, Col, Drawer, Form, Input, Row, Select, Space, InputNumber } from 'antd';
 import { Switch } from 'antd';
 const { Option } = Select;
 import "./editProp.css";
@@ -12,13 +12,13 @@ export const EditProp = ({ data, setLoad }) => {
   const {user} = useSelector((state) => state.session );
  
   const [credential, setCredential] = useState({
-    name: data.name,
-    type: data.type,
-    city: data.city,
-    adress: data.adress,
+    nombre: data.nombre,
+    tipo: data.tipo,
+    ciudad: data.ciudad,
+    direccion: data.direccion,
     desc: data.desc,
-    price: data.price,
-    featured: data.featured
+    valor: data.valor,
+    visible: data.visible
 
   });
   const [open, setOpen] = useState(false);
@@ -34,10 +34,25 @@ export const EditProp = ({ data, setLoad }) => {
   const handleType = (e) => {
     setCredential((prev) => ({
       ...prev,
-      type: e
+      tipo: e
     })
     );
   }
+  const handleCity = (e) => {
+    console.log(e);
+    setCredential((prev) => ({
+      ...prev,
+      ciudad: e
+    })
+    );
+  }
+  const handleNumber = (e) => {
+    console.log(e);
+    setCredential((prev) => ({
+        ...prev,
+        valor: e
+    }))
+}
 
   const handleChange = (e) => {
     setCredential((prev) => ({
@@ -52,7 +67,7 @@ export const EditProp = ({ data, setLoad }) => {
   const onChange = (checked) => {
     setCredential((prev) => ({
       ...prev,
-      featured: checked
+      visible: checked
     })
     );
   };
@@ -64,13 +79,13 @@ export const EditProp = ({ data, setLoad }) => {
 
     try {
       const formData = new FormData();
-      formData.append('name', credential.name);
-      formData.append('type', credential.type);
-      formData.append('city', credential.city);
-      formData.append('adress', credential.adress);
+      formData.append('nombre', credential.nombre);
+      formData.append('tipo', credential.tipo);
+      formData.append('ciudad', credential.ciudad);
+      formData.append('direccion', credential.direccion);
       formData.append('desc', credential.desc);
-      formData.append('price', credential.price);
-      formData.append('featured', credential.featured);
+      formData.append('valor', credential.valor);
+      formData.append('visible', credential.visible);
       fileList.map(file => {
         formData.append('image', file.originFileObj);     
       });
@@ -107,7 +122,7 @@ export const EditProp = ({ data, setLoad }) => {
         }}
         extra={
           <Space>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button onClick={onClose}>Cancelar</Button>
             <Button onClick={handleClick} type="primary">
               Editar
             </Button>
@@ -118,96 +133,107 @@ export const EditProp = ({ data, setLoad }) => {
           <Row gutter={16}>
             <Col span={12}>
               <Form.Item
-                name="name"
-                label="Name"
+                name="nombre"
+                label="Nombre"
                 rules={[
                   {
                     required: true,
-                    message: 'Please house name',
+                    message: 'Por favor ingresar nombre de la casa',
                   },
                 ]}
               >
-                <Input id='name' defaultValue={credential.name} onChange={handleChange} placeholder="Please house name" />
+                <Input id='nombre' defaultValue={credential.nombre} onChange={handleChange} placeholder="Ingresar nombre de la casa" />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item
-                name="adress"
-                label="Adress"
+                name="direccion"
+                label="Direccion"
                 rules={[
                   {
                     required: true,
-                    message: 'Please adress house',
+                    message: 'Por favor, Ingresar direccion de la propiedad',
                   },
                 ]}
               >
-                <Input id='adress' defaultValue={credential.adress} onChange={handleChange} placeholder="Please adress house" />
+                <Input id='direccion' defaultValue={credential.direccion} onChange={handleChange} placeholder="Ingresar direccion de la propiedad" />
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={16}>
             <Col span={12}>
               <Form.Item
-                name="type"
-                label="Type"
+                name="tipo"
+                label="Tipo"
                 rules={[
                   {
                     required: true,
-                    message: 'Please select an type',
+                    message: 'Por favor, Selecciona el tipo de propiedad',
                   },
                 ]}
               >
-                <Select id='type' defaultValue={credential.type} options={[
+                <Select id='tipo' defaultValue={credential.tipo} options={[
                   {
-                    value: 'House',
-                    label: 'House',
+                    value: 'Casa',
+                    label: 'Casa',
                   },
                   {
-                    value: 'Aparment',
-                    label: 'Aparment',
+                    value: 'Departamento',
+                    label: 'Departamento',
                   },
                   {
-                    value: 'Others',
-                    label: 'Others',
-                  }]} onChange={handleType} placeholder="Please select type">
+                    value: 'Otros',
+                    label: 'Otros',
+                  }]} onChange={handleType} placeholder="Seleccionar tipo de propiedad">
 
                 </Select>
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item
-                name="city"
-                label="City"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Please choose the type',
-                  },
-                ]}
+                name="ciudad"
+                label="Ciudad"
               >
-                <Input id='city' defaultValue={credential.city} onChange={handleChange} placeholder="Please city house" />
+                <Select id='ciudad' defaultValue={credential.ciudad} options={[
+                  {
+                    value: 'Angol',
+                    label: 'Angol',
+                  },
+                  {
+                    value: 'Temuco',
+                    label: 'Temuco',
+                  },
+                  {
+                    value: 'Santiago',
+                    label: 'Santiago',
+                  }]} onChange={handleCity} placeholder="Selecciona ciudad">
+
+                </Select>
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={16}>
-            <Col span={12}>
+          <Col span={12}>
               <Form.Item
-                name="price"
-                label="Price"
+                name="valor"
+                label="Valor"
                 rules={[
                   {
                     required: true,
-                    message: 'Please house price',
+                    message: 'Por Favor, Ingresar valor de la propiedad',
                   },
                 ]}
               >
-                <Input id='price' onChange={handleChange} defaultValue={credential.price} placeholder="Please house price" />
+                <InputNumber id='valor' style={{width: 300}} value={credential.valor} defaultValue={credential.valor} onChange={handleNumber} placeholder="Ingresar valor de la propiedad" 
+                  formatter={(value) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
+                />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item
-                name="featured"
-                label="Featured"
+                name="visible"
+                label="Visible"
                 rules={[
                   {
                     required: true,
@@ -215,7 +241,7 @@ export const EditProp = ({ data, setLoad }) => {
                   },
                 ]}
               >
-                <Switch id='featured' defaultChecked={credential.featured} onChange={onChange} />
+                <Switch id='visible' defaultChecked={credential.visible} onChange={onChange} />
               </Form.Item>
             </Col>
           </Row>
@@ -239,15 +265,15 @@ export const EditProp = ({ data, setLoad }) => {
             <Col span={24}>
               <Form.Item
                 name="description"
-                label="Description"
+                label="Descripcion"
                 rules={[
                   {
                     required: true,
-                    message: 'please enter url description',
+                    message: 'Por favor, Agregar descripcion de la propiedad',
                   },
                 ]}
               >
-                <Input.TextArea id='desc' defaultValue={credential.desc} onChange={handleChange} rows={4} placeholder="please enter description house" />
+                <Input.TextArea id='desc' defaultValue={credential.desc} onChange={handleChange} rows={4} placeholder="Ingresar descripcion de la propiedad" />
               </Form.Item>
             </Col>
           </Row>

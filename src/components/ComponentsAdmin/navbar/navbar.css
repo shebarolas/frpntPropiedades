@@ -27,8 +27,42 @@
 }
 .contNav{
     display: grid;
-    
+    grid-template-columns: 0fr 1fr;
+    padding: 1rem;
+    align-items: center;
 }
 .btnAd{
     background-color: #a0ab94;
 }
+
+.dash{
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    align-items: center;
+    height: 3rem;
+    padding: .5rem;
+    cursor: pointer;
+    border-radius: .2rem;
+}
+
+.icons{
+    font-size: 2rem;
+    color: white;
+}
+.navText{
+    color: white;
+    font-size: 1.5;
+}
+.dash:hover{
+    background-color: white;
+    transition: .3s;
+
+}
+.dash:hover .icons{
+    color:#6b9795;
+    transition: .3s;
+}  
+.dash:hover .navText{
+    color:#6b9795;
+    transition: .3s;
+}    
