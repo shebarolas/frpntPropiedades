@@ -6,7 +6,7 @@ import { faHouseFire, faLocation } from "@fortawesome/free-solid-svg-icons";
 import { API_URL } from "../../config/constants";
 
 export const FeatureHouse = () => {
-  const { data, loading } = useFetch(`${API_URL}/hotel/getAll?featured=true`);
+  const { data, loading } = useFetch(`${API_URL}/hotel/getAll?visible=true`);
 
   if (loading)
     return (
@@ -41,15 +41,15 @@ export const FeatureHouse = () => {
               <div className="flex justify-between items-center">
                 <p className="text-white text-xs space-x-1">
                   <FontAwesomeIcon icon={faLocation} className="text-white" />
-                  <span>Ciudad: {data.city}</span>
+                  <span>Ciudad: {data.ciudad}</span>
                 </p>
                 <span className="text-white text-xs">
                   {data.user.name} {data.user.lastname}
                 </span>
               </div>
-              <h4 className="text-white text-xl font-bold">{data.name}</h4>
+              <h4 className="text-white text-xl font-bold">{data.nombre}</h4>
 
-              <span className="text-white font-bold">${data.price}</span>
+              <span className="text-white font-bold">${data.valor}</span>
             </div>
           </div>
         ))}
