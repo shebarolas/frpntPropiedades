@@ -30,7 +30,7 @@ export const PropertyList = () => {
         {data.map((data, index) => (
           <div
             key={index}
-            className="flex justify-center h-20 items-center bg-primary text-white rounded-lg flex-col"
+            className="flex justify-center h-20 items-center bg-white text-black shadow-lg rounded-lg flex-col"
           >
             <h3 className="text-lg font-semibold">{data.tipo}</h3>
             <span className="text-xs">
