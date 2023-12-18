@@ -1,9 +1,9 @@
 import React, { PureComponent, useEffect, useState } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Sector, Cell } from 'recharts';
 import { BarChart, Bar, Rectangle } from 'recharts';
-
 import { useSelector } from 'react-redux';
 import { instance } from '../../config/axios';
+import './probDash.css';
 
 export const ProbDash = () => {
     const { user } = useSelector((state) => state.session);
@@ -16,14 +16,17 @@ export const ProbDash = () => {
             setLoading(true);
             const datass = await instance.get(`/hotel/getIdAdmin/${user._id}`);
             const { data } = datass;
-            const tipos = data.map(item => item.type);
+            console.log(data);
+
+            const tipos = data.map(item => item.tipo);
+            console.log(tipos);
             const transformedData = tipos.reduce((acc, val) => {
                 console.log(acc);
                 const existingItem = acc.find(item => item.name === val);
                 if (existingItem) {
-                    existingItem.value += 1;
+                    existingItem.cantidad += 1;
                 } else {
-                    acc.push({ name: val, value: 1 });
+                    acc.push({ name: val, cantidad: 1 });
                 }
                 return acc;
             }, []);
@@ -47,12 +50,25 @@ export const ProbDash = () => {
         }
     }, [load])
 
-    const colors = ['#8884d8', '#82ca9d'];
+    const colors = ['#8884d8', '#82ca9d', '#acc95f'];
+    const RADIAN = Math.PI / 180;
+    const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+        const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+        const x = cx + radius * Math.cos(-midAngle * RADIAN);
+        const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+        return (
+            <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+                {`${(percent * 100).toFixed(0)}%`}
+            </text>
+        );
+    };
 
 
     return (
-        <>
+        <div className='dash1'>
             <div className="lineChart">
+            <h1 className='textLine'>Valor de Propiedades</h1>
                 <LineChart
                     width={500}
                     height={300}
@@ -65,14 +81,15 @@ export const ProbDash = () => {
                     }}
                 >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
+                    <XAxis dataKey="nombre" />
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Line type="monotone" dataKey="price" stroke="#8884d8" activeDot={{ r: 8 }} />
+                    <Line type="monotone" dataKey="valor" stroke="#6b9795" activeDot={{ r: 8 }} />
                 </LineChart>
             </div>
             <div className="barChart">
+                <h1>Cantidad por tipo de Propiedad</h1>
                 <BarChart
                     width={500}
                     height={300}
@@ -89,11 +106,28 @@ export const ProbDash = () => {
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="value"  fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
-
-
+                    <Bar dataKey="cantidad" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
                 </BarChart>
             </div>
-        </>
+            <div className="pieChart">
+                <h1>Porcentaje por tipo de propiedad</h1>
+                <PieChart width={500} height={300}>
+                    <Pie
+                        data={dataArray}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        label={renderCustomizedLabel}
+                        outerRadius={80}
+                        fill="#8884d8"
+                        dataKey="cantidad"
+                    >
+                        {dataArray.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                        ))}
+                    </Pie>
+                </PieChart>
+            </div>
+        </div>
     )
 }
