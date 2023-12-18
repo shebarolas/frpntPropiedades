@@ -4,11 +4,19 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faBuilding, faBed } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
 import video from "../../assets/video/video.mp4";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const [location, setLocation] = useState("");
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+
+  const search = (e) => {
+    e.preventDefault();
+    if (query) {
+      navigate(`/search?q=${query}`);
+    }
+  };
 
   return (
     <div className="relative h-[46vh]">
@@ -45,15 +53,26 @@ const Header = () => {
           </div>
 
           {/* search */}
-          <div className="flex items-center max-w-2xl w-full h-12 gap-1">
+          <form
+            className="flex items-center max-w-2xl w-full h-12 gap-1"
+            onSubmit={search}
+          >
             <div className="grow flex items-center h-full gap-2 rounded-lg px-4 bg-white">
               <FontAwesomeIcon icon={faBed} className="headerIcon" />
-              <input
-                type="text"
-                placeholder="Where are you going?"
-                className="focus:outline-none w-full"
-                onChange={(e) => setLocation(e.target.value)}
-              />
+
+              <div className="w-full">
+                <select
+                  id="small"
+                  className="w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 border-none focus:outline-none"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                >
+                  <option selected>Choose a country</option>
+                  <option value="Temuco">Temuco</option>
+                  <option value="Angol">Angol</option>
+                  <option value="Santiago">Santiago</option>
+                </select>
+              </div>
             </div>
             {/* <div className="headerSearchItem">
                         <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
@@ -66,16 +85,13 @@ const Header = () => {
                             className='date'
                         />} */}
 
-            <Link
-              to={"/hotel"}
-              state={{ value: location }}
-              className="h-full rounded-md"
+            <button
+              className="h-full rounded-md bg-primary_dark text-white px-4"
+              type="submit"
             >
-              <button className="bg-primary_dark text-white h-full px-4 rounded-md">
-                Buscar
-              </button>
-            </Link>
-          </div>
+              Buscar
+            </button>
+          </form>
         </div>
       </div>
       {/* <img

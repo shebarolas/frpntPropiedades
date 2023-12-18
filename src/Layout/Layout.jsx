@@ -7,7 +7,7 @@ export const Layout = () => {
     <div className="flex flex-col">
       <NavBar />
       <Outlet />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
