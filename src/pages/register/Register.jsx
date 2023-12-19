@@ -10,7 +10,7 @@ import { Input, Form, Tooltip, InputNumber, Switch, notification } from "antd";
 import { instance } from "../../config/axios";
 import { Link, useNavigate } from "react-router-dom";
 import Head from "../../components/ui/Head";
-import video from "../../assets/video/video.mp4";
+import video from "../../assets/video/hotel.mp4";
 import logo from "../../assets/images/logo.png";
 
 export const Register = () => {
@@ -81,7 +81,17 @@ export const Register = () => {
             <source src={video} type="video/mp4" />
           </video>
 
-          <div className="absolute top-0 left-0 w-full h-full banner-gradient" />
+          <div className="absolute top-0 left-0 w-full h-full banner-gradient flex justify-center items-center">
+            <div className="flex flex-col items-center w-2/3 gap-2">
+              <img alt="icon" src={logo} className="w-6 h-6 object-cover" />
+              <h2 className="text-white font-extrabold text-5xl text-center">
+                Registrate para empezar a publicar
+              </h2>
+              <p className="text-center text-white">
+                Inicia esta increible experiencia con nosotros
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="h-full flex justify-center items-center absolute top-0 left-0 md:static w-full py-10  px-4 lg:px-10 space-y-4">
@@ -209,11 +219,16 @@ export const Register = () => {
               >
                 Register
               </button>
-              <div className="flex items-center gap-1 mt-4">
-                <p className="text-xs">Ya tienes una cuenta</p>
-                <Link to={"/login"} className="underline text-xs">
-                  Iniciar sesión
+              <div className="flex items-center justify-between">
+                <Link to="/" className="underline text-xs pt-4">
+                  Volver al Inicio
                 </Link>
+                <div className="flex items-center gap-1 mt-4">
+                  <p className="text-xs">Ya tienes una cuenta</p>
+                  <Link to={"/login"} className="underline text-xs">
+                    Iniciar sesión
+                  </Link>
+                </div>
               </div>
             </Form>
           </div>
