@@ -23,8 +23,6 @@ export const HotelDisplay = () => {
   const { data, loading } = useFetch(`${API_URL}/hotel/getId/${id}`);
   const { user } = useSelector((state) => state.session);
 
-  console.log(data);
-
   const onArrendar = async (e) => {
     e.preventDefault(e);
     const userId = user._id;
