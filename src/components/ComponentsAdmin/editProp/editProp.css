@@ -11,7 +11,17 @@
 
 .btnEdit{
   width: 11rem;
+  color: #6b9795;
+  border: 1px solid #6b9795;
 }
 .btnDelete{
   width: 5rem;  
+}
+.btnEdit:hover{
+  background-color: #6b9795 !important;
+  color: white !important;
+}
+.btnDelete:hover{
+  background-color: red !important;
+  color: white !important;
 }

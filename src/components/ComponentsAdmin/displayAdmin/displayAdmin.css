@@ -1,40 +1,56 @@
 .dTitle{
     font-size: 1.5rem;
 }
-.imgs{
-    height: 3rem;
-    width: 3rem;
-}
 .displayAdmin{
     display: grid;
-    height: 15rem;
-    place-items: center;
-    border: 1px solid gray;
+    height: 35rem;
     border-radius: .5rem;
-    width: 40rem;
+    width: 26rem;
     margin-top: 1rem;
     padding: 1rem;
+    box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.1);
+    border: 1px solid #6b9795;
 }
 .dWrapTitle{
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    place-items: center;
+    grid-template-rows: 1fr 10rem;
 }
 .imgs{
-    height: 7rem;
-    width: 7em;
+    height: 10rem;
+    width: 30em;
     object-fit: cover;
 }
 .dImages{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    width: 20rem;
+    height: 21rem;
     gap: 1rem;
+    place-items: center;
 }
 .dTitles{
     display: grid;
-    grid-template-rows: 1fr 3rem 1fr;
+    grid-template-rows: 3rem 3rem 1fr;
 }
 .dBtns{
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 12rem 1fr;
+}
+.disLocation{
+    display: grid;
+    grid-template-columns: 1.2rem 1fr;
+    align-items: center;
+}
+.disDesc{
+    display: grid;
+    grid-template-columns: 1.2rem 1fr;
+    align-items: center; 
+    width: 20rem;
+}
+.displayWrap{
+    display: grid;
+}
+.ant-carousel{
+    height: 20rem !important;
+    width: 24rem !important;
+    border-radius: 1rem !important;
 }
