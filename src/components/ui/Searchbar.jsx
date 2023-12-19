@@ -1,14 +1,24 @@
+import { useNavigate } from "react-router-dom";
 import { faBed } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
 export default function Searchbar() {
   const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+
+  const search = (e) => {
+    e.preventDefault();
+
+    if (query) {
+      navigate(`/search?q=${query}`);
+    }
+  };
 
   return (
     <form
       className="flex items-center max-w-2xl w-full h-12 gap-1"
-      onSubmit={() => {}}
+      onSubmit={search}
     >
       <div className="grow flex items-center h-full gap-2 rounded-lg px-4 bg-white">
         <FontAwesomeIcon icon={faBed} className="headerIcon" />
@@ -20,7 +30,7 @@ export default function Searchbar() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           >
-            <option selected>Choose a country</option>
+            <option selected>Selecciona la ciudad</option>
             <option value="Temuco">Temuco</option>
             <option value="Angol">Angol</option>
             <option value="Santiago">Santiago</option>

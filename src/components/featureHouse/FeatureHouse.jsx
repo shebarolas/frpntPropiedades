@@ -4,9 +4,11 @@ import Spinner from "../ui/Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouseFire, faLocation } from "@fortawesome/free-solid-svg-icons";
 import { API_URL } from "../../config/constants";
+import { useNavigate } from "react-router";
 
 export const FeatureHouse = () => {
   const { data, loading } = useFetch(`${API_URL}/hotel/getAll?visible=true`);
+  const navigate = useNavigate();
 
   if (loading)
     return (
@@ -30,7 +32,11 @@ export const FeatureHouse = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {data.map((data) => (
-          <div key={data._id} className="relative h-72">
+          <div
+            key={data._id}
+            className="relative h-72 hover:cursor-pointer"
+            onClick={() => navigate(`/propiedad/${data._id}`)}
+          >
             <img
               src={data.photos[0]}
               alt=""
