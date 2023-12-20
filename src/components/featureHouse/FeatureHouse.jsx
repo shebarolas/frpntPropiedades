@@ -27,7 +27,7 @@ export const FeatureHouse = () => {
             size="sm"
           />
         </div>
-        <h2 className="font-semibold text-2xl">Agregagas Recientemente</h2>
+        <h2 className="font-semibold text-2xl">Agregadas Recientemente</h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

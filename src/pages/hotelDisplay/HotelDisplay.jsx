@@ -70,6 +70,7 @@ export const HotelDisplay = () => {
             <PropiedadGallery images={data.photos} />
           </div>
 
+          {/* details */}
           <section className="w-full flex gap-4">
             {/* details */}
             <div className="text-black flex flex-col gap-4 grow">
@@ -147,9 +148,13 @@ export const HotelDisplay = () => {
             </div>
           </section>
 
-          <div className="w-full h-[50vh] rounded-lg">
+          {/* map */}
+          <div className="h-[60vh]">
             <Map />
           </div>
+
+          {/* user */}
+          <div></div>
         </div>
       </div>
     </>

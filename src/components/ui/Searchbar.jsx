@@ -1,17 +1,32 @@
-import { useNavigate } from "react-router-dom";
 import { faBed } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import axios from "axios";
+import { API_URL } from "../../config/constants";
 
-export default function Searchbar() {
-  const [query, setQuery] = useState("");
-  const navigate = useNavigate();
-
-  const search = (e) => {
+export default function Searchbar({
+  onChangeResults,
+  onChangeLoading,
+  query,
+  onChangeQuery,
+}) {
+  const [value, setValue] = useState("");
+  const search = async (e) => {
     e.preventDefault();
 
     if (query) {
-      navigate(`/search?q=${query}`);
+      try {
+        onChangeLoading(true);
+        const { data } = await axios.get(
+          `${API_URL}/hotel/getAll?visible=true&ciudad=${value}`
+        );
+        onChangeResults(data);
+        onChangeQuery(value);
+      } catch (e) {
+        console.log(e);
+      } finally {
+        onChangeLoading(false);
+      }
     }
   };
 
@@ -27,8 +42,8 @@ export default function Searchbar() {
           <select
             id="small"
             className="w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 border-none focus:outline-none"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
           >
             <option selected>Selecciona la ciudad</option>
             <option value="Temuco">Temuco</option>
