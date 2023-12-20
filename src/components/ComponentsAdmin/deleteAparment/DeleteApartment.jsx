@@ -3,25 +3,25 @@ import React from 'react';
 import { Button, Popconfirm } from 'antd';
 import { instance } from '../../../config/axios';
 
-export const DeleteApartment = ({data, setLoad}) => {
+export const DeleteApartment = ({ data, setLoad }) => {
 
     console.log(data);
 
-    const deleteClick = async(e) => {
+    const deleteClick = async (e) => {
         e.preventDefault();
         try {
             console.log(data.user)
             await instance.delete(`/hotel/delete/${data._id}`);
             setLoad(true)
         } catch (error) {
-            
+
         }
     }
 
     return (
         <Popconfirm
-            title="Delete the task"
-            description="Are you sure to delete this task?"
+            title="Eliminar Propiedad"
+            description="Estas seguro de querer eliminar la propiedad?"
             icon={
                 <QuestionCircleOutlined
                     style={{
@@ -30,6 +30,8 @@ export const DeleteApartment = ({data, setLoad}) => {
                 />
             }
             onConfirm={deleteClick}
+            okText="Eliminar"
+            cancelText="Cancelar"
         >
             <Button className='btnDelete' danger>Delete</Button>
         </Popconfirm>

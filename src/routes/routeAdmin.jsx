@@ -8,6 +8,7 @@ import { Home } from "../pages/home/Home";
 import { Hotel } from "../pages/hotel/Hotel";
 import { HotelDisplay } from "../pages/hotelDisplay/HotelDisplay";
 import { ProbDash } from "../pages/ProbDash/ProbDash";
+import { Admin } from "../pages/admin/Admin";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
     path: "/probDash",
     element: <ProbDash />,
   },
+  {
+    path: "/administrador",
+    element: <Admin/>
+  }
 ]);
 
 export default router;

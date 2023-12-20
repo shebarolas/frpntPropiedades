@@ -101,14 +101,15 @@ export const Login = () => {
                 name="email"
                 label="Email"
                 rules={[
-                  { required: true, message: "Please input your Email!" },
+                  { required: true, message: "Por favor, Ingresa tu email!" },
                 ]}
               >
                 <Input
                   className="back"
                   onChange={handleChange}
                   id="email"
-                  placeholder="Enter your email "
+                  type="email"
+                  placeholder="Ingresar tu email "
                   prefix={<MailOutlined className="site-form-item-icon" />}
                   suffix={
                     <Tooltip title="Extra information">
@@ -121,16 +122,16 @@ export const Login = () => {
               </Form.Item>
               <Form.Item
                 name="password"
-                label="Password"
+                label="Contraseña"
                 rules={[
-                  { required: true, message: "Please input your Password!" },
+                  { required: true, message: "Por favor, Ingresa tu contraseña!" },
                 ]}
               >
                 <Input.Password
                   className="back"
                   onChange={handleChange}
                   id="password"
-                  placeholder="Enter your password "
+                  placeholder="Ingresar contraseña "
                 />
               </Form.Item>
               {contextHolder}

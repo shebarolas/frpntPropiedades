@@ -41,7 +41,7 @@ export const NavBar = () => {
         </div>
         <div className="dash">
           <FaPerson className="icons" />
-          <span className="navText">Mis Arrendatarios</span>
+          <Link to={"arrendatarios"}><span className="navText">Mis Arrendatarios</span></Link>
         </div>
       </div>
       <Button className="btnAd" onClick={logout}>Cerrar Sesion</Button>

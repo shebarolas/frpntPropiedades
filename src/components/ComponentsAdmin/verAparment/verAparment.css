@@ -1,0 +1,17 @@
+.ver{
+    width: 100%;
+    display: grid;
+    align-items: center;
+    margin-left: 8rem;
+}
+.verPropiedades{
+    width: 90%;
+}
+.verProps{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.verText{
+    font-size: 2rem;
+    font-weight: bold;
+}

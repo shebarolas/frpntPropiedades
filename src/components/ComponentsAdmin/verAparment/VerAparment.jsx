@@ -37,18 +37,23 @@ export const VerAparment = () => {
 
   return (
     <div className="ver">
-      <CreateAp setLoad={setLoad}/>
+      <div className="crearProp">
+        <h1 className='verText'>Crear Propiedad</h1>
+        <CreateAp setLoad={setLoad} />
+      </div>
       <div className='verPropiedades'>
-        <h1>Mis Propiedades</h1>
-        {
-          loading ? <Skeleton /> : <>
-            {
-              data.map(data => (
-                <DisplayAdmin setLoad={setLoad} data={data} key={data._id} />
-              ))
-            }
-          </>
-        }
+        <h1 className='verText'>Mis Propiedades</h1>
+        <div className="verProps">
+          {
+            loading ? <Skeleton /> : <>
+              {
+                data.map(data => (
+                  <DisplayAdmin setLoad={setLoad} data={data} key={data._id} />
+                ))
+              }
+            </>
+          }
+        </div>
       </div>
     </div>
   )

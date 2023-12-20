@@ -31,7 +31,6 @@ export const Register = () => {
     email: undefined,
     phone: undefined,
     password: undefined,
-    isAdmin: false,
   });
 
   const handleChange = (e) => {
@@ -46,13 +45,6 @@ export const Register = () => {
       phone: e,
     }));
   };
-  const handeAdmin = (e) => {
-    setData((prev) => ({
-      ...prev,
-      isAdmin: e,
-    }));
-  };
-
   const onClick = async (e) => {
     e.preventDefault();
     try {
@@ -103,14 +95,14 @@ export const Register = () => {
             <Form className="" layout="vertical">
               <Form.Item
                 name="name"
-                label="Name"
-                rules={[{ required: true, message: "Please input your name!" }]}
+                label="Nombre"
+                rules={[{ required: true, message: "Por favor, Ingresa tu nombre" }]}
               >
                 <Input
                   className="py-2"
                   onChange={handleChange}
                   id="name"
-                  placeholder="Enter your name"
+                  placeholder="Ingresa tu nombre"
                   prefix={<UserOutlined className="site-form-item-icon" />}
                   suffix={
                     <Tooltip title="Extra information">
@@ -123,16 +115,16 @@ export const Register = () => {
               </Form.Item>
               <Form.Item
                 name="lastname"
-                label="Lastname"
+                label="Apellido"
                 rules={[
-                  { required: true, message: "Please input your lastname!" },
+                  { required: true, message: "Por favor, Ingresa tu apellido!" },
                 ]}
               >
                 <Input
                   className="py-2"
                   onChange={handleChange}
                   id="lastname"
-                  placeholder="Enter your lastname "
+                  placeholder="Ingresa tu apellido "
                   prefix={<UserOutlined className="site-form-item-icon" />}
                   suffix={
                     <Tooltip title="Extra information">
@@ -147,14 +139,15 @@ export const Register = () => {
                 name="email"
                 label="Email"
                 rules={[
-                  { required: true, message: "Please input your Email!" },
+                  { required: true, message: "Por favor, Ingresa tu email!" },
                 ]}
               >
                 <Input
                   className="py-2"
                   onChange={handleChange}
                   id="email"
-                  placeholder="Enter your email "
+                  type="email"
+                  placeholder="Ingresa tu email "
                   prefix={<MailOutlined className="site-form-item-icon" />}
                   suffix={
                     <Tooltip title="Extra information">
@@ -168,11 +161,11 @@ export const Register = () => {
               <div className="grid grid-cols-2 gap-4">
                 <Form.Item
                   name="number"
-                  label="Phone Number"
+                  label="Numero de Telefono"
                   rules={[
                     {
                       required: true,
-                      message: "Please input your Phone Number!",
+                      message: "Por favor, Ingresar numero de teelfono!",
                     },
                   ]}
                 >
@@ -180,7 +173,8 @@ export const Register = () => {
                     className="py-2 hei"
                     onChange={handleNumber}
                     id="number"
-                    placeholder="Enter your Phone Number "
+                    maxLength={8}
+                    placeholder="Ingresar tu numero de telefono "
                     addonBefore="+569"
                     prefix={<PhoneOutlined className="site-form-item-icon" />}
                     suffix={
@@ -192,22 +186,19 @@ export const Register = () => {
                     }
                   />
                 </Form.Item>
-                <Form.Item name="admin" label="Is Admin?">
-                  <Switch onChange={handeAdmin} defaultChecked={data.role} />
-                </Form.Item>
               </div>
               <Form.Item
                 name="password"
-                label="Password"
+                label="Contraseña"
                 rules={[
-                  { required: true, message: "Please input your Password!" },
+                  { required: true, message: "Por favor, Ingresar tu password!" },
                 ]}
               >
                 <Input.Password
                   className="py-2"
                   onChange={handleChange}
                   id="password"
-                  placeholder="Enter your password "
+                  placeholder="Ingresar contraseña"
                 />
               </Form.Item>
 
@@ -217,7 +208,7 @@ export const Register = () => {
                 type="button"
                 className="w-full bg-primary hover:bg-primary/75 text-white py-2 rounded-md"
               >
-                Register
+                Registrar
               </button>
               <div className="flex items-center justify-between">
                 <Link to="/" className="underline text-xs pt-4">

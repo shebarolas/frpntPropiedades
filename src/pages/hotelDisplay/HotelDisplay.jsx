@@ -19,9 +19,11 @@ import PropiedadAgenda from "../../components/propiedad/PropiedadAgenda";
 export const HotelDisplay = () => {
   const { id } = useParams();
   const { data, loading } = useFetch(`${API_URL}/hotel/getId/${id}`);
+  const { user } = useSelector((state) => state.session);
   const { data: schedules, loading: schedulesLoading } = useFetch(
     `${API_URL}/visitas/obtener/${id}`
   );
+  
   if (loading && schedulesLoading)
     return (
       <>
