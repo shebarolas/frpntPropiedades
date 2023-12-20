@@ -25,6 +25,7 @@ export const Feature = () => {
   const { data, loading } = useFetch(
     `${API_URL}/hotel/countCity?cities=Temuco,Angol,Santiago`
   );
+  console.log(data);
 
   if (loading)
     return (
@@ -32,6 +33,8 @@ export const Feature = () => {
         <Spinner />
       </div>
     );
+
+  if (!data) return <></>;
 
   return (
     <div className="flex flex-col gap-4">
@@ -58,7 +61,7 @@ export const Feature = () => {
                     size="sm"
                   />
                   <h4 className="text-white text-2xl uppercase font-extrabold">
-                    {item.title}
+                    {item?.title}
                   </h4>
                 </div>
                 <div className="flex items-center gap-1">

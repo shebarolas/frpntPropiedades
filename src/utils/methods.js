@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export function formatPrice(number) {
   const formatter = new Intl.NumberFormat("es-ES");
 
@@ -29,4 +31,14 @@ export function calculateDistanceBetweenPoints(point1, point2) {
 
   const d = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)) * R;
   return Math.round(d);
+}
+
+export function diasFaltantes(fechaObjetivo) {
+  // Obtiene la fecha actual con Moment.js
+  const fechaActual = moment();
+
+  // Calcula la diferencia en días entre la fecha actual y la fecha objetivo
+  const diasFaltantes = fechaObjetivo.diff(fechaActual, "days");
+
+  return diasFaltantes;
 }

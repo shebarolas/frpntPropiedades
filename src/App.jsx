@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { loadSession } from "./redux/slices/session-slice";
 import { useEffect } from "react";
 import Loading from "./pages/loading/Loading";
+import routerUser from "./routes/routeUser";
 
 function App() {
   const { user, loading } = useSelector((state) => state.session);
@@ -22,6 +23,9 @@ function App() {
   if (!loading && user && user.isAdmin) {
     return <RouterProvider router={routerAdmin} />;
   }
+
+  if (!loading && user && !user.isAdmin)
+    return <RouterProvider router={routerUser} />;
 
   return (
     <>
