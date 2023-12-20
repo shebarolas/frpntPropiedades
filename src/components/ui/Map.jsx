@@ -1,9 +1,14 @@
 import { useRef, useState } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationPin } from "@fortawesome/free-solid-svg-icons";
+import { faLocationPinLock } from "@fortawesome/free-solid-svg-icons";
 
-export default function Map({ latitude = -38.738374, longitude = -72.590627 }) {
+//-38.750951, -72.605735
+export default function Map({
+  latitude = -38.750951,
+  longitude = -72.605735,
+  rounded = true,
+}) {
   const mapRef = useRef(null);
   const [viewPort, setViewPort] = useState({
     latitude,
@@ -26,10 +31,8 @@ export default function Map({ latitude = -38.738374, longitude = -72.590627 }) {
       mapStyle="mapbox://styles/mapbox/streets-v9"
       style={{
         height: "100%",
-        position: "relative",
-        overflow: "hidden",
         width: "100%",
-        borderRadius: "1rem",
+        borderRadius: rounded ? "1rem" : "0rem",
       }}
       minZoom={5}
       maxZoom={15}
@@ -38,8 +41,8 @@ export default function Map({ latitude = -38.738374, longitude = -72.590627 }) {
     >
       <Marker latitude={latitude} longitude={longitude} anchor="bottom">
         <FontAwesomeIcon
-          icon={faLocationPin}
-          size="lg"
+          icon={faLocationPinLock}
+          size="2x"
           className="text-red-500"
         />
       </Marker>

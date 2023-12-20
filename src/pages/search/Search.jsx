@@ -1,22 +1,51 @@
 import { faLocation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import HouseCard from "../../components/ui/HouseCard";
 import Head from "../../components/ui/Head";
 import Map from "../../components/ui/Map";
 import Searchbar from "../../components/ui/Searchbar";
+import useFetch from "../../components/Hooks/useFecth";
+import { API_URL } from "../../config/constants";
+import PropiedadSkeleton from "../../components/ui/PropiedadSkeleton";
 
 export default function Search() {
   const [searchParams] = useSearchParams();
-  const query = searchParams.get("q");
+  const type = searchParams.get("q");
   const navigate = useNavigate();
+  const [query, setQuery] = useState(type);
+  const { data, loading, setData, setLoading } = useFetch(
+    `${API_URL}/hotel/getAll?visible=true&ciudad=${query}`
+  );
+  // location para ver en el mapa al hacer hover sobre una propiedad
+  const [location, setLocation] = useState({
+    latitude: -38.750951,
+    longitude: -72.605735,
+  });
 
   useEffect(() => {
     if (!query) {
       navigate("/", { replace: true });
     }
   }, [navigate, query]);
+
+  // cambia el estado de location
+  const onChangeLocation = (value) => {
+    setLocation(value);
+  };
+
+  const onChangeResults = (results) => {
+    setData(results);
+  };
+
+  const onChangeLoading = (value) => {
+    setLoading(value);
+  };
+
+  const onChangeQuery = (value) => {
+    setQuery(value);
+  };
 
   return (
     <>
@@ -26,7 +55,12 @@ export default function Search() {
         {/* results */}
         <div className="px-10 py-6 flex flex-col gap-4">
           {/* bar */}
-          <Searchbar />
+          <Searchbar
+            onChangeResults={onChangeResults}
+            onChangeLoading={onChangeLoading}
+            query={query}
+            onChangeQuery={onChangeQuery}
+          />
 
           {/* info */}
           <section>
@@ -42,23 +76,35 @@ export default function Search() {
                 Resultados de busqueda en {query}
               </h2>
             </div>
-            <span className="text-sm">0 lugares</span>
+            <span className="text-sm">
+              {data?.length} {data?.length > 1 ? "lugares" : "lugar"}
+            </span>
           </section>
 
           {/* data */}
           <section className="flex flex-col gap-4">
-            {Array(10)
-              .fill(0)
-              .map((_, index) => (
-                <HouseCard key={index} />
-              ))}
+            {!loading
+              ? data?.map((item, index) => (
+                  <HouseCard
+                    key={index}
+                    property={item}
+                    onChangeLocation={onChangeLocation}
+                  />
+                ))
+              : Array(4)
+                  .fill(0)
+                  .map((_, index) => <PropiedadSkeleton key={index} />)}
           </section>
         </div>
 
         {/* maps */}
         <div className="col-span-2">
           <div className="h-screen sticky top-0 left-0">
-            <Map />
+            <Map
+              latitude={location.latitude}
+              longitude={location.longitude}
+              rounded={false}
+            />
           </div>
         </div>
       </div>
