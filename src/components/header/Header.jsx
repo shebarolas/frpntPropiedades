@@ -19,7 +19,7 @@ const Header = () => {
   };
 
   return (
-    <div className="relative h-[46vh]">
+    <div className="relative h-[60vh]">
       <div className="flex justify-center items-center">
         <div className="max-w-7xl w-full flex flex-col gap-3 items-center">
           {/* btn */}

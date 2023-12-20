@@ -1,9 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
 import "./hotelDisplay.css";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useFetch from "../../components/Hooks/useFecth";
-import { useSelector } from "react-redux";
-import { instance } from "../../config/axios";
 import { API_URL } from "../../config/constants";
 import Spinner from "../../components/ui/Spinner";
 import PropiedadGallery from "../../components/propiedad/PropiedadGallery";
@@ -14,28 +11,18 @@ import { MdLocationOn } from "react-icons/md";
 import { GrRestroom } from "react-icons/gr";
 import { MdOutlineBedroomParent } from "react-icons/md";
 import { PiFlowerTulipDuotone } from "react-icons/pi";
+import { CiWarning } from "react-icons/ci";
 import Map from "../../components/ui/Map";
 
+import PropiedadAgenda from "../../components/propiedad/PropiedadAgenda";
+
 export const HotelDisplay = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const id = location.pathname.split("/")[2];
+  const { id } = useParams();
   const { data, loading } = useFetch(`${API_URL}/hotel/getId/${id}`);
-  const { user } = useSelector((state) => state.session);
-
-  const onArrendar = async (e) => {
-    e.preventDefault(e);
-    const userId = user._id;
-    try {
-      const res = await instance.post("/arrendar/agendar", { userId, id });
-      navigate("/");
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  if (loading)
+  const { data: schedules, loading: schedulesLoading } = useFetch(
+    `${API_URL}/visitas/obtener/${id}`
+  );
+  if (loading && schedulesLoading)
     return (
       <>
         <Head title="Cargando" />
@@ -45,6 +32,8 @@ export const HotelDisplay = () => {
         </div>
       </>
     );
+
+  if (!data) return <p>Error al cargar publicación</p>;
 
   return (
     <>
@@ -67,7 +56,7 @@ export const HotelDisplay = () => {
               </p>
             </div>
             {/* gallery images */}
-            <PropiedadGallery images={data.photos} />
+            <PropiedadGallery images={data?.photos ?? []} />
           </div>
 
           {/* details */}
@@ -76,7 +65,7 @@ export const HotelDisplay = () => {
             <div className="text-black flex flex-col gap-4 grow">
               <div>
                 <label className="text-sm font-semibold">Descripción</label>
-                <p className="text-sm">{data.desc}</p>
+                <p className="text-sm">{data?.desc}</p>
               </div>
 
               <div className="flex flex-col gap-1">
@@ -87,7 +76,7 @@ export const HotelDisplay = () => {
                     <GrRestroom />
                     <p className="text-sm">
                       <span className="underline">Cantidad de baños:</span>{" "}
-                      <span>{data.bano}</span>
+                      <span>{data?.bano}</span>
                     </p>
                   </div>
                   <div className="flex items-center gap-1">
@@ -111,41 +100,16 @@ export const HotelDisplay = () => {
             </div>
 
             {/* agendar */}
-            <div className="w-1/4">
-              <div className="bg-white p-4 rounded-lg shadow-md border border-slate-100">
-                {/* precio */}
-
-                {!user ? (
-                  <div className="flex flex-col gap-2">
-                    <label className="text-xs">
-                      Inicia Sesion para arrendar{" "}
-                    </label>
-                    <Link
-                      to={"/login"}
-                      className="text-sm bg-primary flex py-2 text-white justify-center rounded-md"
-                    >
-                      {" "}
-                      Iniciar Sesión{" "}
-                    </Link>
-                  </div>
-                ) : (
-                  !user?.isAdmin && (
-                    <div className="flex flex-col gap-2">
-                      <button
-                        type="button"
-                        className="bg-primary_dark py-2 text-white rounded-lg"
-                        onClick={onArrendar}
-                      >
-                        Agendar
-                      </button>
-                      <p className="text-xs font-light text-center">
-                        No se hará ningún cargo por el momento
-                      </p>
-                    </div>
-                  )
-                )}
+            {!data?.arrendada ? (
+              <PropiedadAgenda schedules={schedules} propiedad={data} />
+            ) : (
+              <div>
+                <div className="p-4 rounded-lg border border-gray-200 shadow-md flex items-center gap-1">
+                  <CiWarning />
+                  <h4 className="text-sm ">La propiedad ya esta arrendada</h4>
+                </div>
               </div>
-            </div>
+            )}
           </section>
 
           {/* map */}

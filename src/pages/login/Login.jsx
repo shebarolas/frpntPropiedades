@@ -25,7 +25,7 @@ export const Login = () => {
   const openNotification = (error) => {
     const messages = error;
     api.open({
-      message: "Error!!!!!!!",
+      message: "Ha ocurrido un error",
       description: messages,
       duration: 4,
     });
