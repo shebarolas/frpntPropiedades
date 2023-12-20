@@ -1,5 +1,5 @@
-import React from 'react'
 import "./displayAdmin.css";
+
 import { EditProp } from '../editProp/EditProp';
 import { DeleteApartment } from '../deleteAparment/DeleteApartment';
 import { IoLocationOutline } from "react-icons/io5";
@@ -11,7 +11,7 @@ export const DisplayAdmin = ({ data, setLoad }) => {
   const { photos } = data;
   console.log(data);
   return (
-    <div className='displayAdmin'>
+    <div className="displayAdmin">
       <div className="displayWrap">
         <div className="dWrapTitle">
           <div className="dImages">
@@ -38,7 +38,6 @@ export const DisplayAdmin = ({ data, setLoad }) => {
               <MdOutlinePriceChange />
               <span>{data.valor}</span>
             </div>
-
           </div>
         </div>
         <div className="dBtns">
@@ -47,5 +46,5 @@ export const DisplayAdmin = ({ data, setLoad }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

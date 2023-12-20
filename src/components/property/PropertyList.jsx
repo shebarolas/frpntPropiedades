@@ -7,7 +7,6 @@ import { API_URL } from "../../config/constants";
 
 export const PropertyList = () => {
   const { data, loading } = useFetch(`${API_URL}/hotel/countType`);
-  console.log(data);
 
   if (loading)
     return (
@@ -15,6 +14,8 @@ export const PropertyList = () => {
         <Spinner />
       </div>
     );
+
+  if (!data) return <></>;
 
   return (
     <div className="flex flex-col gap-4">
@@ -27,15 +28,15 @@ export const PropertyList = () => {
 
       {/* data */}
       <div className="grid grid-cols-3 gap-4">
-        {data.map((data, index) => (
+        {data?.map((data, index) => (
           <div
             key={index}
             className="flex justify-center h-20 items-center bg-white text-black shadow-lg rounded-lg flex-col"
           >
-            <h3 className="text-lg font-semibold">{data.tipo}</h3>
+            <h3 className="text-lg font-semibold">{data?.tipo}</h3>
             <span className="text-xs">
               <FontAwesomeIcon icon={faTypo3} size="sm" className="mr-1" />
-              {data.count}
+              {data?.count}
             </span>
           </div>
         ))}

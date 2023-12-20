@@ -1,4 +1,3 @@
-import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { LayoutAdmin } from "../Layout/LayoutAdmin";
 import { InicioAdmin } from "../pages/incioAdmin/InicioAdmin";
@@ -8,7 +7,6 @@ import { Layout } from "../Layout/Layout";
 import { Home } from "../pages/home/Home";
 import { Hotel } from "../pages/hotel/Hotel";
 import { HotelDisplay } from "../pages/hotelDisplay/HotelDisplay";
-import { Success } from "../pages/success/Success";
 import { ProbDash } from "../pages/ProbDash/ProbDash";
 import { Admin } from "../pages/admin/Admin";
 

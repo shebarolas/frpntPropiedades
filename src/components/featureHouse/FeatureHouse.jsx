@@ -17,6 +17,8 @@ export const FeatureHouse = () => {
       </div>
     );
 
+  if (!data) return <></>;
+
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center justify-center gap-1">
@@ -31,14 +33,14 @@ export const FeatureHouse = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {data.map((data) => (
+        {data?.map((data, index) => (
           <div
-            key={data._id}
+            key={index}
             className="relative h-72 hover:cursor-pointer"
-            onClick={() => navigate(`/propiedad/${data._id}`)}
+            onClick={() => navigate(`/propiedad/${data?._id}`)}
           >
             <img
-              src={data.photos[0]}
+              src={data?.photos[0]}
               alt=""
               className="w-full h-full object-cover"
             />
@@ -47,15 +49,15 @@ export const FeatureHouse = () => {
               <div className="flex justify-between items-center">
                 <p className="text-white text-xs space-x-1">
                   <FontAwesomeIcon icon={faLocation} className="text-white" />
-                  <span>Ciudad: {data.ciudad}</span>
+                  <span>Ciudad: {data?.ciudad}</span>
                 </p>
                 <span className="text-white text-xs">
-                  {data.user.name} {data.user.lastname}
+                  {data?.user?.name} {data?.user?.lastname}
                 </span>
               </div>
-              <h4 className="text-white text-xl font-bold">{data.nombre}</h4>
+              <h4 className="text-white text-xl font-bold">{data?.nombre}</h4>
 
-              <span className="text-white font-bold">${data.valor}</span>
+              <span className="text-white font-bold">${data?.valor}</span>
             </div>
           </div>
         ))}
