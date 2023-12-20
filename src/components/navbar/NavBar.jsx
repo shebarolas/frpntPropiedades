@@ -4,6 +4,7 @@ import { Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../redux/slices/session-slice";
 import { MdOutlineAddHomeWork } from "react-icons/md";
+import { MdCardMembership } from "react-icons/md";
 
 const NavBar = () => {
   const { user } = useSelector((state) => state.session);
@@ -25,10 +26,14 @@ const NavBar = () => {
               <span className="navText">
                 {user.name} {user.lastname}
               </span>
-              <Link to={"/payment"}>
-                <Button>Membresia</Button>
-              </Link>
-              <Button onClick={logout}>Salir</Button>
+              <Link
+              to={"/payment"}
+              className="text-blac bg-white rounded-md text-sm py-2 px-4 flex items-center gap-1"
+            >
+              <MdCardMembership />
+              Pagar Membresia
+            </Link>
+              <Button className="text-blac bg-white rounded-md text-sm py-2 px-4 flex items-center gap-1" onClick={logout}>Salir</Button>
             </div>
           </>
         ) : user?.isAdmin ? (
@@ -36,10 +41,14 @@ const NavBar = () => {
             <span className="navText">
               {user.name} {user.lastname}
             </span>
-            <Link to={"/admin"}>
-              <Button>Administracion</Button>
+            <Link
+              to={"/admin"}
+              className="text-blac bg-white rounded-md text-sm py-2 px-4 flex items-center gap-1"
+            >
+              <MdCardMembership />
+              Dashborad
             </Link>
-            <Button onClick={logout}>Salir</Button>
+            <Button className="text-blac bg-white rounded-md text-sm py-2 px-4 flex items-center gap-1" onClick={logout}>Salir</Button>
           </div>
         ) : (
           <div className="flex items-center gap-4">

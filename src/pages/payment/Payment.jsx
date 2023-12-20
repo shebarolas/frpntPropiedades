@@ -20,6 +20,7 @@ export const Payment = () => {
     const onPyament = async () => {
         try {
             const res = await instance.post(`/pay/payment/${user._id}`);
+            console.log(res);
             window.location.href = res.data.url;
         } catch (error) {
             console.log(error);
@@ -29,8 +30,8 @@ export const Payment = () => {
     return (
         <div className='payment relative h-[100vh]'>
             <div className="payRight">
-                <h1 className='payText'>Seleccionar tu plan de subscripción</h1>
-                <Button onClick={onPyament}>Pagar</Button>
+                <h1 className='payText'>Paga tu membresia</h1>
+                <Button className='btnPay' onClick={onPyament}>Pagar membresia</Button>
             </div>
 
             <div className="pWrapper">

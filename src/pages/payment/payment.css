@@ -21,6 +21,7 @@
 .pWraTitle{
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    height: 30rem;
     
 }
 .payText{
@@ -36,4 +37,12 @@
     padding-left: 1rem;
     grid-template-columns: 3rem 1fr;
     align-items: center;
+}
+.btnPay{
+    height: 4rem;
+    width: 20rem;
+    font-size: 2rem;
+}
+.btnPay:hover{
+    background-color: #5AB2AE;
 }

@@ -68,9 +68,9 @@ export const ProbDash = () => {
     return (
         <div className='dash1'>
             <div className="lineChart">
-            <h1 className='textLine'>Valor de Propiedades</h1>
+                <h1 className='textLine'>Valor de Propiedades</h1>
                 <LineChart
-                    width={500}
+                    width={1000}
                     height={300}
                     data={datas}
                     margin={{
@@ -88,46 +88,49 @@ export const ProbDash = () => {
                     <Line type="monotone" dataKey="valor" stroke="#6b9795" activeDot={{ r: 8 }} />
                 </LineChart>
             </div>
-            <div className="barChart">
-                <h1>Cantidad por tipo de Propiedad</h1>
-                <BarChart
-                    width={500}
-                    height={300}
-                    data={dataArray}
-                    margin={{
-                        top: 5,
-                        right: 30,
-                        left: 20,
-                        bottom: 5,
-                    }}
-                >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="cantidad" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
-                </BarChart>
-            </div>
-            <div className="pieChart">
-                <h1>Porcentaje por tipo de propiedad</h1>
-                <PieChart width={500} height={300}>
-                    <Pie
+            <div className="chartBott">
+                <div className="barChart">
+                    <h1 className='textChart'>Cantidad por tipo de Propiedad</h1>
+                    <BarChart
+                        width={500}
+                        height={300}
                         data={dataArray}
-                        cx="50%"
-                        cy="50%"
-                        labelLine={false}
-                        label={renderCustomizedLabel}
-                        outerRadius={80}
-                        fill="#8884d8"
-                        dataKey="cantidad"
+                        margin={{
+                            top: 5,
+                            right: 30,
+                            left: 20,
+                            bottom: 5,
+                        }}
                     >
-                        {dataArray.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
-                        ))}
-                    </Pie>
-                </PieChart>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="cantidad" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
+                    </BarChart>
+                </div>
+                <div className="pieChart">
+                    <h1 className='textChart'>Porcentaje por tipo de propiedad</h1>
+                    <PieChart width={500} height={300}>
+                        <Pie
+                            data={dataArray}
+                            cx="50%"
+                            cy="50%"
+                            labelLine={false}
+                            label={renderCustomizedLabel}
+                            outerRadius={80}
+                            fill="#8884d8"
+                            dataKey="cantidad"
+                        >
+                            {dataArray.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                            ))}
+                        </Pie>
+                    </PieChart>
+                </div>
             </div>
+
         </div>
     )
 }

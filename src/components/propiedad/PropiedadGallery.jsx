@@ -1,3 +1,4 @@
+import { Image } from 'antd';
 export default function PropiedadGallery({ images }) {
   return (
     <div className="grid sm:grid-rows-3 sm:grid-cols-2 md:grid-rows-1 md:grid-cols-4 gap-2 rounded-md">
@@ -10,9 +11,11 @@ export default function PropiedadGallery({ images }) {
               : "row-span-auto"
           }`}
         >
-          <img
+          <Image
             alt="room"
             src={item}
+            width={"100%"}
+            height={"22rem"}
             className="w-full h-80 object-cover rounded-lg"
           />
         </div>

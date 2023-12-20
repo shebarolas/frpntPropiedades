@@ -21,6 +21,7 @@ export const HotelDisplay = () => {
   const navigate = useNavigate();
   const id = location.pathname.split("/")[2];
   const { data, loading } = useFetch(`${API_URL}/hotel/getId/${id}`);
+  console.log(data);
   const { user } = useSelector((state) => state.session);
 
   const onArrendar = async (e) => {

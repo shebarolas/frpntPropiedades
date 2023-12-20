@@ -1,7 +1,8 @@
 .ver{
     width: 100%;
     display: grid;
-    place-items: center;
+    align-items: center;
+    margin-left: 8rem;
 }
 .verPropiedades{
     width: 90%;

@@ -37,7 +37,10 @@ export const VerAparment = () => {
 
   return (
     <div className="ver">
-      <CreateAp setLoad={setLoad} />
+      <div className="crearProp">
+        <h1 className='verText'>Crear Propiedad</h1>
+        <CreateAp setLoad={setLoad} />
+      </div>
       <div className='verPropiedades'>
         <h1 className='verText'>Mis Propiedades</h1>
         <div className="verProps">

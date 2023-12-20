@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'antd';
@@ -28,15 +28,23 @@ export const Success = () => {
         }
         
     }
+
+    useEffect(() => {
+
+      onNavigate();
+      navigate("/");
+    }, [])
+    
+
   return (
     <div className='success'>
         <div className="sWrapper">
           <div className="sWrapSuc">
             <h1>Felicidades por estar con nosotros C: </h1>
             <span>Por favor, has click en el boton para completar y regresar el home :C</span>
-            <span>Tendremos para comer, mantener el servicio y agregar mas cosas a futuro</span>
+            <span>Con el dinero de la membresia, podremos mantener el servicio y agregar mas cosas a futuro</span>
           </div>
-          <Button className='btnSuc' onClick={onNavigate}>Volver al Home</Button>
+          {/* <Button className='btnSuc' onClick={onNavigate}>Volver al Home</Button> */}
         </div>
         
     </div>

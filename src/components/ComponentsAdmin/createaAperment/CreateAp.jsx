@@ -169,7 +169,7 @@ const handleRooms = (e) => {
 
   return (
     <>
-      <Button type="primary" onClick={showDrawer} icon={<PlusOutlined />}>
+      <Button className='btnEdit' type="primary" onClick={showDrawer} icon={<PlusOutlined />}>
         Nueva Casa
       </Button>
       {contextHolder}
