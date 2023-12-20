@@ -5,6 +5,7 @@ import { logOut } from "../../redux/slices/session-slice";
 
 import { CiUser } from "react-icons/ci";
 import { TiDocument } from "react-icons/ti";
+import { MdCardMembership } from "react-icons/md";
 
 export default function Dropdown() {
   const { user } = useSelector((state) => state.session);
@@ -35,6 +36,15 @@ export default function Dropdown() {
     },
     {
       key: "3",
+      label: (
+        <Link to="/payment" className="flex items-center gap-1">
+          <MdCardMembership />
+          Pagar Membresia
+        </Link>
+      ),
+    },
+    {
+      key: "4",
       label: (
         <button type="button" className="text-red-500" onClick={logout}>
           Cerrar Sesión
