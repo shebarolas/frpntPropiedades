@@ -7,7 +7,7 @@
     position: sticky;
     top: 0;
     left: 0;
-    background-color: #6b9795;
+    background-color: #5AB2AE;
 }
 .titleNav{
     font-size: 1.2rem;
@@ -59,10 +59,10 @@
 
 }
 .dash:hover .icons{
-    color:#6b9795;
+    color:#5AB2AE;
     transition: .3s;
 }  
 .dash:hover .navText{
-    color:#6b9795;
+    color:#5AB2AE;
     transition: .3s;
 }    

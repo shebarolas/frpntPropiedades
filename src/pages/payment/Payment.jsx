@@ -4,7 +4,12 @@ import { instance } from '../../config/axios'
 import { Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux'
 import { CheckCircleTwoTone, HeartTwoTone, SmileTwoTone } from '@ant-design/icons';
-import { Space } from 'antd';;
+import { FaCashRegister } from "react-icons/fa6";
+import { MdApartment } from "react-icons/md";
+import { IoCreateOutline } from "react-icons/io5";
+import { FaRegMoneyBillAlt } from "react-icons/fa";
+import { MdOutlinePayments } from "react-icons/md";
+import video from "../../assets/video/video.mp4";
 import "./payment.css";
 export const Payment = () => {
 
@@ -22,33 +27,50 @@ export const Payment = () => {
     }
 
     return (
-        <div className='payment'>
+        <div className='payment relative h-[100vh]'>
+            <div className="payRight">
+                <h1 className='payText'>Seleccionar tu plan de subscripción</h1>
+                <Button onClick={onPyament}>Pagar</Button>
+            </div>
+
             <div className="pWrapper">
                 <div className="pWraTitle">
-                    <h1>Beneficios de pagar la membresia</h1>
+                    <h1 className='payText'>Beneficios de pagar la membresia</h1>
                     <div className="pWraBene">
-                        <CheckCircleTwoTone twoToneColor="#52c41a" />
-                        <span>Vas a poder registar tus propiedades</span>
+                        <FaCashRegister className='icons'/>
+                        <span className='pText'>Vas a poder registar tus propiedades</span>
                     </div>
                     <div className="pWraBene">
-                        <CheckCircleTwoTone twoToneColor="#52c41a" />
-                        <span>Podras administrar tus propiedades</span>
+                        <MdApartment className='icons'/>
+                        <span className='pText'>Podras administrar tus propiedades</span>
                     </div>
                     <div className="pWraBene">
-                        <CheckCircleTwoTone twoToneColor="#52c41a" />
-                        <span>Podras crear 5 propiedades</span>
+                        <IoCreateOutline className='icons'/>
+                        <span className='pText'>Podras crear 5 propiedades</span>
                     </div>
                     <div className="pWraBene">
-                        <CheckCircleTwoTone twoToneColor="#52c41a" />
-                        <span>Prodas ver tus ganancias</span>
+                        <FaRegMoneyBillAlt className='icons'/>
+                        <span className='pText'>Podras ver tus ganancias</span>
                     </div>
                     <div className="pWraBene">
-                        <CheckCircleTwoTone twoToneColor="#52c41a" />
-                        <span>Podras recibir los pagos de tu arriendo (Futura Implementacion)</span>
+                        <MdOutlinePayments className='icons' />
+                        <span className='pText'>Podras recibir los pagos de tu arriendo (Futura Implementacion)</span>
                     </div>
 
                 </div>
-                <Button onClick={onPyament}>Pagar</Button>
+            </div>
+
+            <div className="absolute top-0 left-0 w-full h-full -z-10">
+                <video
+                    className="w-full h-full object-cover relative"
+                    autoPlay
+                    loop
+                    muted
+                >
+                    <source src={video} type="video/mp4" />
+                </video>
+
+                <div className="absolute top-0 left-0 w-full h-full banner-gradient" />
             </div>
         </div>
     )
