@@ -1,51 +1,58 @@
 import "./navbar.css";
-import React, { useState } from 'react';
-import { HomeOutlined, DashboardOutlined, SettingOutlined } from '@ant-design/icons';
-import { Menu, Switch, Button } from 'antd';
-import { useSelector, useDispatch } from 'react-redux';
-import { logOut } from '../../../redux/slices/session-slice';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import {
+  HomeOutlined,
+  DashboardOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
+import { Menu, Switch, Button } from "antd";
+import { useSelector, useDispatch } from "react-redux";
+import { logOut } from "../../../redux/slices/session-slice";
+import { Link } from "react-router-dom";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { IoHomeOutline } from "react-icons/io5";
 import { FaPerson } from "react-icons/fa6";
 import { IoPersonOutline } from "react-icons/io5";
 import { IoPersonCircleOutline } from "react-icons/io5";
 
-
 export const NavBar = () => {
-
-  const { user } = useSelector(state => state.session);
+  const { user } = useSelector((state) => state.session);
   const dispatch = useDispatch();
   const logout = () => {
     dispatch(logOut());
     window.location.href = "/";
-
-  }
-
+  };
 
   return (
-    <div className='navBar'>
+    <div className="navBar">
       <div className="contNav">
-        <IoPersonCircleOutline className="icons"/>
-        <h1 className='titleNav navText'>Bienvenido {user.name}</h1>
+        <IoPersonCircleOutline className="icons" />
+        <h1 className="titleNav navText">Bienvenido {user.name}</h1>
       </div>
 
       <div className="navMenu">
         <div className="dash">
           <AiOutlineDashboard className="icons" />
-          <Link to={""}><span className="navText">Dashboard</span></Link>
+          <Link to={""}>
+            <span className="navText">Dashboard</span>
+          </Link>
         </div>
         <div className="dash">
           <IoHomeOutline className="icons" />
-          <Link to={"proiedades "}><span className="navText">Mis Propiedades</span></Link>
+          <Link to={"propiedades"}>
+            <span className="navText">Mis Propiedades</span>
+          </Link>
         </div>
         <div className="dash">
           <FaPerson className="icons" />
-          <Link to={"arrendatarios"}><span className="navText">Mis Arrendatarios</span></Link>
+          <Link to={"arrendatarios"}>
+            <span className="navText">Mis Arrendatarios</span>
+          </Link>
         </div>
       </div>
-      <Button className="btnAd" onClick={logout}>Cerrar Sesion</Button>
-
+      <Button className="btnAd" onClick={logout}>
+        Cerrar Sesion
+      </Button>
 
       {/* <Switch
         checked={theme === 'dark'}
@@ -75,5 +82,5 @@ export const NavBar = () => {
         <a href="" className='linkNav'>Mis Arrendatarios</a>
       </div> */}
     </div>
-  )
-}
+  );
+};

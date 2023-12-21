@@ -10,21 +10,20 @@ import {
   Select,
   Space,
   InputNumber,
+  notification,
+  Switch,
 } from "antd";
-
-import { Switch } from "antd";
-import "./createApp.css";
-import { UploadImg } from "../uploadImg/UploadImg";
 import { instance } from "../../../config/axios";
+
 import { useSelector } from "react-redux";
-import { notification } from "antd";
+import { UploadImg } from "../uploadImg/UploadImg";
 import SelectUbication from "../../ui/SelectUbication";
 
 export const CreateAp = ({ setLoad }) => {
   const { user } = useSelector((state) => state.session);
 
   const [fileList, setFileList] = useState([]);
-  // const [error, setError] = useState("");
+  const [error, setNulls] = useState("");
   const [loading, setLoading] = useState(false);
 
   const [form] = Form.useForm();
@@ -98,6 +97,7 @@ export const CreateAp = ({ setLoad }) => {
   };
   const onClose = () => {
     setOpen(false);
+    setNulls("");
     setLoading(false);
   };
   const onChange = (checked) => {
