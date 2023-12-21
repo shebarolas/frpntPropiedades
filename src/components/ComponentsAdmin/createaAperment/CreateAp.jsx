@@ -10,23 +10,12 @@ import {
   Select,
   Space,
   InputNumber,
+  notification 
 } from "antd";
 
-<<<<<<< HEAD
-export const CreateAp = ({setLoad}) => {
-    const {user} = useSelector((state) => state.session );
-    console.log(user._id);
-    const [fileList, setFileList] = useState([]);
-    const [loading, setLoading] = useState(false);
-=======
-import { Switch } from "antd";
-import "./createApp.css";
-import { UploadImg } from "../uploadImg/UploadImg";
-import { instance } from "../../../config/axios";
 import { useSelector } from "react-redux";
-import { notification } from "antd";
-import SelectUbication from "../../ui/SelectUbication";
->>>>>>> develop
+import { useNavigate } from "react-router-dom";
+
 
 export const CreateAp = ({ setLoad }) => {
   const { user } = useSelector((state) => state.session);
@@ -123,32 +112,6 @@ export const CreateAp = ({ setLoad }) => {
     console.log(credential);
 
     try {
-<<<<<<< HEAD
-      setLoading(true);
-     const formData = new FormData();
-     formData.append('nombre', credential.nombre);
-     formData.append('tipo', credential.tipo);
-     formData.append('ciudad', credential.ciudad);
-     formData.append('direccion', credential.direccion);
-     formData.append('desc', credential.desc);
-     formData.append('valor', credential.valor);
-     formData.append('visible', credential.visible);
-     formData.append('user', credential.user);
-     formData.append('bano', credential.bano);
-     formData.append('habitaciones', credential.habitaciones);
-     fileList.map(file => {
-       formData.append('image', file.originFileObj);     
-     });
-    
-     const {status} = await instance.post("/hotel/register", formData, {
-       headers: {
-         'Content-Type': 'multipart/form-data'
-       }
-     })
-   
-     console.log(status);
-      if(status === 200){
-=======
       const formData = new FormData();
       formData.append("nombre", credential.nombre);
       formData.append("tipo", credential.tipo);
@@ -174,7 +137,6 @@ export const CreateAp = ({ setLoad }) => {
       setLoading(true);
       console.log(status);
       if (status === 200) {
->>>>>>> develop
         setLoad(true);
         setCredential({
           nombre: "",
@@ -203,13 +165,8 @@ export const CreateAp = ({ setLoad }) => {
   const openNotification = (error) => {
     const messages = error;
     api.open({
-<<<<<<< HEAD
-      message: 'Error al registar propiedades',
-      description:messages,
-=======
       message: "Notification Title",
       description: messages,
->>>>>>> develop
       duration: 0,
     });
   };
@@ -237,10 +194,6 @@ export const CreateAp = ({ setLoad }) => {
         }}
         extra={
           <Space>
-<<<<<<< HEAD
-            <Button loading={loading} onClick={onClose}>Cancelar</Button>
-            <Button className='btnCreate' onClick={handleClick} loading={loading}  type="primary">
-=======
             <Button onClick={onClose}>Cancelar</Button>
             <Button
               onClick={handleClick}
@@ -248,7 +201,6 @@ export const CreateAp = ({ setLoad }) => {
               type="primary"
               className="bg-primary"
             >
->>>>>>> develop
               Crear
             </Button>
           </Space>
@@ -388,11 +340,7 @@ export const CreateAp = ({ setLoad }) => {
                   },
                 ]}
               >
-<<<<<<< HEAD
-                <Switch className='switch' id='featured' defaultChecked onChange={onChange} />
-=======
                 <Switch id="featured" defaultChecked onChange={onChange} />
->>>>>>> develop
               </Form.Item>
             </Col>
           </Row>
@@ -450,14 +398,10 @@ export const CreateAp = ({ setLoad }) => {
                   },
                 ]}
               >
-<<<<<<< HEAD
-                <UploadImg nulls={nulls} fileList={fileList} handleFileList={handleFileList} />
-=======
                 <UploadImg
                   fileList={fileList}
                   handleFileList={handleFileList}
                 />
->>>>>>> develop
               </Form.Item>
             </Col>
           </Row>
