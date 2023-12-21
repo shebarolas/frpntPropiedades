@@ -19,6 +19,7 @@ import PropiedadAgenda from "../../components/propiedad/PropiedadAgenda";
 export const HotelDisplay = () => {
   const { id } = useParams();
   const { data, loading } = useFetch(`${API_URL}/hotel/getId/${id}`);
+  console.log(data);
   const { user } = useSelector((state) => state.session);
   const { data: schedules, loading: schedulesLoading } = useFetch(
     `${API_URL}/visitas/obtener/${id}`
@@ -118,7 +119,7 @@ export const HotelDisplay = () => {
 
           {/* map */}
           <div className="h-[60vh]">
-            <Map />
+            <Map latitude={Number(data.lat)} longitude={Number(data.long)}  />
           </div>
 
           {/* user */}
