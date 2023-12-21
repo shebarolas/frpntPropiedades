@@ -3,20 +3,48 @@ import Head from "../../components/ui/Head";
 
 import { HiOutlineMail } from "react-icons/hi";
 import { CiUser } from "react-icons/ci";
-import useFetch from "../../components/Hooks/useFecth";
-import { API_URL } from "../../config/constants";
+// import useFetch from "../../components/Hooks/useFecth";
+// import { API_URL } from "../../config/constants";
 import Spinner from "../../components/ui/Spinner";
 import { Timeline } from "antd";
 import TimelineItem from "../../components/agenda/TimelineItem";
 import { GrSchedulePlay } from "react-icons/gr";
+import { useEffect, useState } from "react";
+import { useCallback } from "react";
+import { instance } from "../../config/axios";
 
 export default function Profile() {
   const { user } = useSelector((state) => state.session);
-  const { data, loading } = useFetch(
-    `${API_URL}/visitas/obtenerIdCliente/${user?._id}`
-  );
+  // const { data, loading } = useFetch(
+  //   `${API_URL}/visitas/obtenerIdCliente/${user?._id}`
+  // );
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [reloadHoras, setReloadHoras] = useState(false);
 
-  if (loading)
+  const fetchHoras = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const response = await instance.get(
+        `/visitas/obtenerIdCliente/${user?._id}`
+      );
+      setData(response.data);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    fetchHoras();
+
+    return () => {
+      setReloadHoras(false);
+    };
+  }, [fetchHoras, reloadHoras]);
+
+  if (isLoading)
     return (
       <div className="min-h-screen flex justify-center items-center">
         <Spinner />
@@ -60,7 +88,13 @@ export default function Profile() {
               <Timeline
                 items={data?.map((item, index) => {
                   return {
-                    children: <TimelineItem key={index} agenda={item} />,
+                    children: (
+                      <TimelineItem
+                        key={index}
+                        agenda={item}
+                        setReloadHoras={setReloadHoras}
+                      />
+                    ),
                   };
                 })}
               />
