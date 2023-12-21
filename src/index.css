@@ -9,6 +9,11 @@
   .ant-carousel {
     width: 100% !important;
   }
+
+  .ant-btn-primary {
+    background-color: rgb(90, 178, 174) !important;
+    color: white !important;
+  }
 }
 
 * {

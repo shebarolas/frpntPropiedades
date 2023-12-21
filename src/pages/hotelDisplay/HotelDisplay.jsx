@@ -15,6 +15,7 @@ import { CiWarning } from "react-icons/ci";
 import Map from "../../components/ui/Map";
 
 import PropiedadAgenda from "../../components/propiedad/PropiedadAgenda";
+import { useSelector } from "react-redux";
 
 export const HotelDisplay = () => {
   const { id } = useParams();
@@ -23,7 +24,7 @@ export const HotelDisplay = () => {
   const { data: schedules, loading: schedulesLoading } = useFetch(
     `${API_URL}/visitas/obtener/${id}`
   );
-  
+
   if (loading && schedulesLoading)
     return (
       <>
