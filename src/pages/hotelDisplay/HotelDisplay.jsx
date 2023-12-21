@@ -15,7 +15,6 @@ import { useSelector } from "react-redux";
 import Map from "../../components/ui/Map";
 
 import PropiedadAgenda from "../../components/propiedad/PropiedadAgenda";
-import { useSelector } from "react-redux";
 
 export const HotelDisplay = () => {
   const { id } = useParams();
