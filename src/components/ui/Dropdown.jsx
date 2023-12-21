@@ -10,6 +10,7 @@ import { MdDashboard } from "react-icons/md";
 
 export default function Dropdown() {
   const { user } = useSelector((state) => state.session);
+  console.log(user);
   const dispatch = useDispatch();
 
   const logout = () => {
@@ -17,15 +18,6 @@ export default function Dropdown() {
   };
 
   const items = [
-    {
-      key: "1",
-      label: (
-        <Link to={"/admin"} className="flex items-center gap-1">
-          <MdDashboard />
-          Dashborad
-        </Link>
-      ),
-    },
     {
       key: "2",
       label: (
@@ -62,11 +54,45 @@ export default function Dropdown() {
       ),
     },
   ];
+
+  const itemsAd = [
+    {
+      key: "1",
+      label: (
+        <Link to={"/admin"} className="flex items-center gap-1">
+          <MdDashboard />
+          Dashborad
+        </Link>
+      ),
+    },
+    // {
+    //   key: "2",
+    //   label: (
+    //     <Link to="/agenda" className="flex items-center gap-1">
+    //       <TiDocument />
+    //       Mis horas
+    //     </Link>
+    //   ),
+    // },
+    {
+      key: "4",
+      label: (
+        <button type="button" className="text-red-500" onClick={logout}>
+          Cerrar Sesión
+        </button>
+      ),
+    },
+  ];
+
+
+
   return (
     <DropdownAntd
-      menu={{
-        items,
-      }}
+      menu={
+         !user.isAdmin ? {
+          items,} : {
+          items: itemsAd,}
+      }
       placement="bottomRight"
       arrow
     >
