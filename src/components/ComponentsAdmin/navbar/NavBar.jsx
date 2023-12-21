@@ -1,18 +1,11 @@
 import "./navbar.css";
-import React, { useState } from "react";
-import {
-  HomeOutlined,
-  DashboardOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
-import { Menu, Switch, Button } from "antd";
+import { Button } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { logOut } from "../../../redux/slices/session-slice";
 import { Link } from "react-router-dom";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { IoHomeOutline } from "react-icons/io5";
 import { FaPerson } from "react-icons/fa6";
-import { IoPersonOutline } from "react-icons/io5";
 import { IoPersonCircleOutline } from "react-icons/io5";
 
 export const NavBar = () => {

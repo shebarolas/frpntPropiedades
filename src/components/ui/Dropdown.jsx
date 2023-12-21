@@ -10,11 +10,11 @@ import { MdDashboard } from "react-icons/md";
 
 export default function Dropdown() {
   const { user } = useSelector((state) => state.session);
-  console.log(user);
   const dispatch = useDispatch();
 
   const logout = () => {
     dispatch(logOut());
+    window.location.href = "/";
   };
 
   const items = [
@@ -84,14 +84,16 @@ export default function Dropdown() {
     },
   ];
 
-
-
   return (
     <DropdownAntd
       menu={
-         !user.isAdmin ? {
-          items,} : {
-          items: itemsAd,}
+        !user.isAdmin
+          ? {
+              items,
+            }
+          : {
+              items: itemsAd,
+            }
       }
       placement="bottomRight"
       arrow
