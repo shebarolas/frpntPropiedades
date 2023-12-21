@@ -135,7 +135,7 @@ function DetailTab({ propiedad }) {
 
       {/* map */}
       <div className="h-[60vh] w-full">
-        <Map />
+        <Map propiedad={propiedad}/>
       </div>
     </div>
   );

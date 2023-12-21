@@ -34,10 +34,6 @@ const router = createBrowserRouter([
         element: <Search />,
       },
       {
-        path: "agenda",
-        element: <Agenda />,
-      },
-      {
         path: "perfil",
         element: <Profile />,
       },

@@ -24,7 +24,7 @@ export default function PropiedadAgenda({ schedules, propiedad }) {
       });
 
       if (response.status === 200) {
-        navigate("/agenda");
+        navigate("/perfil");
       }
     } catch (e) {
       console.log(e);
