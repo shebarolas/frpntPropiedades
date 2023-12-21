@@ -13,7 +13,6 @@ export const CreateAp = ({setLoad}) => {
     const {user} = useSelector((state) => state.session );
     console.log(user._id);
     const [fileList, setFileList] = useState([]);
-    const [nulls, setNulls] = useState('');
     const [loading, setLoading] = useState(false);
 
   const [form] = Form.useForm();  
