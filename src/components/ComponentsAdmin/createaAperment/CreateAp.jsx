@@ -13,7 +13,7 @@ export const CreateAp = ({setLoad}) => {
     const {user} = useSelector((state) => state.session );
     console.log(user._id);
     const [fileList, setFileList] = useState([]);
-    const [error, setError] = useState('');
+    const [nulls, setNulls] = useState('');
     const [loading, setLoading] = useState(false);
 
   const [form] = Form.useForm();  
@@ -88,6 +88,7 @@ const handleRooms = (e) => {
   };
   const onClose = () => {
     setOpen(false);
+    setNulls('');
     setLoading(false);
 
   };
@@ -108,6 +109,7 @@ const handleRooms = (e) => {
      console.log(credential);
    
     try {
+      setLoading(true);
      const formData = new FormData();
      formData.append('nombre', credential.nombre);
      formData.append('tipo', credential.tipo);
@@ -128,7 +130,7 @@ const handleRooms = (e) => {
          'Content-Type': 'multipart/form-data'
        }
      })
-     setLoading(true);
+   
      console.log(status);
       if(status === 200){
         setLoad(true);
@@ -161,7 +163,7 @@ const handleRooms = (e) => {
   const openNotification = (error) => {
     const messages = error
     api.open({
-      message: 'Notification Title',
+      message: 'Error al registar propiedades',
       description:messages,
       duration: 0,
     });
@@ -185,8 +187,8 @@ const handleRooms = (e) => {
         }}
         extra={
           <Space>
-            <Button onClick={onClose}>Cancelar</Button>
-            <Button onClick={handleClick} loading={loading}  type="primary">
+            <Button loading={loading} onClick={onClose}>Cancelar</Button>
+            <Button className='btnCreate' onClick={handleClick} loading={loading}  type="primary">
               Crear
             </Button>
           </Space>
@@ -304,7 +306,7 @@ const handleRooms = (e) => {
                   },
                 ]}
               >
-                <Switch id='featured' defaultChecked onChange={onChange} />
+                <Switch className='switch' id='featured' defaultChecked onChange={onChange} />
               </Form.Item>
             </Col>
           </Row>
@@ -350,7 +352,7 @@ const handleRooms = (e) => {
                   },
                 ]}
               >
-                <UploadImg fileList={fileList} handleFileList={handleFileList} />
+                <UploadImg nulls={nulls} fileList={fileList} handleFileList={handleFileList} />
               </Form.Item>
             </Col>
           </Row>

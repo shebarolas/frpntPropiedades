@@ -8,3 +8,16 @@
     background: #fff;
     border-top: 1px solid #e9e9e9;
   }
+  .btnCreate{
+    border: 1px solid #5AB2AE;
+    color: #5AB2AE;
+  }
+  .btnCreate:hover{
+    background-color: #5AB2AE !important;
+    color: white;
+  }
+ .switch:checked{
+    color: #000 !important;
+ }
+  
+  /* Cambiar el color del botón del interruptor cuando está activado */

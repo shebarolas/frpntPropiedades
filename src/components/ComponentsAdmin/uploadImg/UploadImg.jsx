@@ -12,9 +12,9 @@ const getBase64 = (file) =>
 
   
 
-export const UploadImg = ({fileList,handleFileList}) => {
+export const UploadImg = ({fileList,handleFileList, nulls}) => {
     const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState('');
+  const [previewImage, setPreviewImage] = useState(nulls);
   const [previewTitle, setPreviewTitle] = useState('');
  
 
