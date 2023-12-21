@@ -11,7 +11,7 @@ import { GrRestroom } from "react-icons/gr";
 import { MdOutlineBedroomParent } from "react-icons/md";
 import { PiFlowerTulipDuotone } from "react-icons/pi";
 import { CiWarning } from "react-icons/ci";
-import {useSelector} from 'react-redux';
+import { useSelector } from "react-redux";
 import Map from "../../components/ui/Map";
 
 import PropiedadAgenda from "../../components/propiedad/PropiedadAgenda";
@@ -23,7 +23,7 @@ export const HotelDisplay = () => {
   const { data: schedules, loading: schedulesLoading } = useFetch(
     `${API_URL}/visitas/obtener/${id}`
   );
-  
+
   if (loading && schedulesLoading)
     return (
       <>
@@ -102,7 +102,9 @@ export const HotelDisplay = () => {
             </div>
 
             {/* agendar */}
-            {!data?.arrendada ? (
+            {user?.isAdmin ? (
+              <></>
+            ) : !data?.arrendada ? (
               <PropiedadAgenda schedules={schedules} propiedad={data} />
             ) : (
               <div>

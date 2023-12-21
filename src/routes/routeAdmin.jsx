@@ -42,7 +42,7 @@ const router = createBrowserRouter([
         element: <InicioAdmin />,
       },
       {
-        path: "proiedades",
+        path: "propiedades",
         element: <Propiedades />,
       },
       {
@@ -61,8 +61,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/administrador",
-    element: <Admin/>
-  }
+    element: <Admin />,
+  },
 ]);
 
 export default router;
