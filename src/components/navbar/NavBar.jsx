@@ -1,47 +1,52 @@
-import React from 'react'
-import './navbar.css';
-import { Link } from 'react-router-dom';
-import { Button } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { logOut } from '../../redux/slices/session-slice';
+import "./navbar.css";
+import { Link, useLocation } from "react-router-dom";
+import { MdOutlineAddHomeWork } from "react-icons/md";
+import logo from "../../assets/images/logo.png";
 
-export const NavBar = () => {
+import Dropdown from "../ui/Dropdown";
+import CustomLink from "../ui/CustomLink";
+import { useSelector } from "react-redux";
+
+const NavBar = () => {
   const { user } = useSelector((state) => state.session);
-  const dispatch = useDispatch();
+  const location = useLocation();
 
-  const logout = () => {
-    dispatch(logOut());
-
-  }
-
-  console.log(user);
   return (
-    <div className="navbar">
-      <div className="navContainer">
-        <Link to={'/'} className="decoration">
-          <h1 className="logo">Arriendo</h1>
+    <div
+      className={`flex justify-center ${
+        location.pathname === "/"
+          ? "bg-primary text-white shadow-none"
+          : "bg-white text-black border-b border-gray-200"
+      }`}
+    >
+      <div className="max-w-7xl w-full h-20 flex justify-between items-center">
+        {/* logo */}
+        <Link to={"/"} className="decoration flex items-center">
+          <img alt="logo" src={logo} className="w-5 h-5 object-cover" />
+          <h1 className="font-bold lowercase">ChilePlace</h1>
         </Link>
-        {
-          user && !user.isAdmin ? <>
-            <div className="navBu">
-              <span className='navText'>{user.name} {user.lastname}</span>
-              <Link to={'/payment'}><Button>Membresia</Button></Link>
-              <Button onClick={logout}>Salir</Button>
+
+        {/* navegation */}
+        <div className="flex items-center gap-10">
+          <CustomLink url={"/"} label="Inicio" />
+          {user ? (
+            <Dropdown />
+          ) : (
+            <div className="flex items-center gap-4">
+              <CustomLink url={"/login"} label="Iniciar Sesión" />
+              <Link
+                to={"/register"}
+                className="text-blac bg-white text-black rounded-md text-sm py-2 px-4 flex items-center gap-1"
+              >
+                <MdOutlineAddHomeWork />
+                Publica tu propiedad
+              </Link>
             </div>
-          </> 
-          : user?.isAdmin ? <div className="navBu">
-              <span className='navText'>{user.name} {user.lastname}</span>
-              <Link to={'/admin'}><Button>Administracion</Button></Link>
-              <Button onClick={logout}>Salir</Button>
-            </div> 
-            :
-            (<div className="navItems">
-            <Link to={'/login'}><Button className="btns">Login</Button></Link>
-            <Link to={'/register'}><Button className="btns">Register</Button></Link>
-          </div>
-          )
-        }
+          )}
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default NavBar;

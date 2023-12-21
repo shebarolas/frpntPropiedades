@@ -1,148 +1,191 @@
-import React, { useState } from 'react';
-import { PlusOutlined } from '@ant-design/icons';
-import { Button, Col, DatePicker, Drawer, Form, Input, Row, Select, Space } from 'antd';
-const { Option } = Select;
-import { Switch } from 'antd';
-import './createApp.css';
-import { UploadImg } from '../uploadImg/UploadImg';
-import { instance } from '../../../config/axios';
-import {useSelector} from 'react-redux';
-import {notification } from 'antd';
+import { useState } from "react";
+import { PlusOutlined } from "@ant-design/icons";
+import {
+  Button,
+  Col,
+  Drawer,
+  Form,
+  Input,
+  Row,
+  Select,
+  Space,
+  InputNumber,
+  notification,
+  Switch,
+} from "antd";
+import { instance } from "../../../config/axios";
 
-export const CreateAp = ({setLoad}) => {
-    const {user} = useSelector((state) => state.session );
-    const [fileList, setFileList] = useState([]);
-    const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false);
+import { useSelector } from "react-redux";
+import { UploadImg } from "../uploadImg/UploadImg";
+import SelectUbication from "../../ui/SelectUbication";
 
-  const [form] = Form.useForm();  
+export const CreateAp = ({ setLoad }) => {
+  const { user } = useSelector((state) => state.session);
+
+  const [fileList, setFileList] = useState([]);
+  const [error, setNulls] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const [form] = Form.useForm();
 
   const [credential, setCredential] = useState({
-    name: '',
-    type: '',
-    city: '',
-    adress: '',
-    desc: '',
-    price: 0,
-    featured: true,
+    nombre: "",
+    tipo: "",
+    ciudad: "",
+    direccion: "",
+    desc: "",
+    valor: 0,
+    visible: true,
     bano: 0,
     habitaciones: 0,
     user: user._id,
   });
-  
+  const [location, setLocation] = useState({
+    latitude: -38.750951,
+    longitude: -72.605735,
+  });
+
   const handleFileList = (newFileList) => {
     setFileList(newFileList);
-  }
- 
+  };
+
+  const handleNumber = (e) => {
+    console.log(e);
+    setCredential((prev) => ({
+      ...prev,
+      valor: e,
+    }));
+  };
+  const handleBano = (e) => {
+    setCredential((prev) => ({
+      ...prev,
+      bano: e,
+    }));
+  };
+  const handleRooms = (e) => {
+    setCredential((prev) => ({
+      ...prev,
+      habitaciones: e,
+    }));
+  };
 
   const handleType = (e) => {
     console.log(e);
     setCredential((prev) => ({
       ...prev,
-      type: e
-    })
-    );
-  }
+      tipo: e,
+    }));
+  };
+
+  const handleCity = (e) => {
+    console.log(e);
+    setCredential((prev) => ({
+      ...prev,
+      ciudad: e,
+    }));
+  };
 
   const handleChange = (e) => {
     setCredential((prev) => ({
       ...prev,
-      [e.target.id]: e.target.value
-    })
-    );
-  }
+      [e.target.id]: e.target.value,
+    }));
+  };
   const [open, setOpen] = useState(false);
   const showDrawer = () => {
     setOpen(true);
   };
   const onClose = () => {
     setOpen(false);
+    setNulls("");
     setLoading(false);
-
   };
   const onChange = (checked) => {
     console.log(checked);
-    
+
     setCredential((prev) => ({
       ...prev,
-      featured: checked
-    })
-    );
+      visible: checked,
+    }));
   };
 
-
-
-  const handleClick = async(e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
-     console.log(credential);
-   
+    console.log(credential);
+
     try {
-     const formData = new FormData();
-     formData.append('name', credential.name);
-     formData.append('type', credential.type);
-     formData.append('city', credential.city);
-     formData.append('adress', credential.adress);
-     formData.append('desc', credential.desc);
-     formData.append('price', credential.price);
-     formData.append('featured', credential.featured);
-     formData.append('user', credential.user);
-     formData.append('bano', credential.bano);
-     formData.append('habitaciones', credential.habitaciones);
-     fileList.map(file => {
-       formData.append('image', file.originFileObj);     
-     });
-    
-     const {status} = await instance.post("/hotel/register", formData, {
-       headers: {
-         'Content-Type': 'multipart/form-data'
-       }
-     })
-     setLoading(true);
-     console.log(status);
-      if(status === 200){
+      const formData = new FormData();
+      formData.append("nombre", credential.nombre);
+      formData.append("tipo", credential.tipo);
+      formData.append("ciudad", credential.ciudad);
+      formData.append("direccion", credential.direccion);
+      formData.append("desc", credential.desc);
+      formData.append("valor", credential.valor);
+      formData.append("visible", credential.visible);
+      formData.append("user", credential.user);
+      formData.append("bano", credential.bano);
+      formData.append("habitaciones", credential.habitaciones);
+      formData.append("lat", location.latitude);
+      formData.append("long", location.longitude);
+      fileList.map((file) => {
+        formData.append("image", file.originFileObj);
+      });
+
+      const { status } = await instance.post("/hotel/register", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      setLoading(true);
+      console.log(status);
+      if (status === 200) {
         setLoad(true);
         setCredential({
-          name: '',
-          type: '',
-          city: '',
-          adress: '',
-          desc: '',
-          price: 0,
-          featured: true,
+          nombre: "",
+          tipo: "",
+          ciudad: "",
+          direccion: "",
+          desc: "",
+          valor: 0,
+          visible: true,
           bano: 0,
           habitaciones: 0,
+          user: user._id,
         });
         form.resetFields();
         onClose();
-       
       }
     } catch (error) {
+      const { response } = error;
+      openNotification("Error al crear publicación");
+    } finally {
       setLoading(false);
-      const {response} = error;
-      openNotification(response.data.message);
-     
     }
-
-  }
+  };
 
   const [api, contextHolder] = notification.useNotification();
   const openNotification = (error) => {
-    const messages = error
+    const messages = error;
     api.open({
-      message: 'Notification Title',
-      description:messages,
+      message: "Notification Title",
+      description: messages,
       duration: 0,
     });
   };
 
   return (
     <>
-      <Button type="primary" onClick={showDrawer} icon={<PlusOutlined />}>
+      <Button
+        className="btnEdit"
+        type="primary"
+        onClick={showDrawer}
+        icon={<PlusOutlined />}
+      >
         Nueva Casa
       </Button>
       {contextHolder}
       <Drawer
-        title="Create a new House"
+        title="Crear una nueva propiedad"
         width={720}
         onClose={onClose}
         open={open}
@@ -154,7 +197,12 @@ export const CreateAp = ({setLoad}) => {
         extra={
           <Space>
             <Button onClick={onClose}>Cancelar</Button>
-            <Button onClick={handleClick} loading={loading}  type="primary">
+            <Button
+              onClick={handleClick}
+              loading={loading}
+              type="primary"
+              className="bg-primary"
+            >
               Crear
             </Button>
           </Space>
@@ -164,104 +212,137 @@ export const CreateAp = ({setLoad}) => {
           <Row gutter={16}>
             <Col span={12}>
               <Form.Item
-                name="name"
-                label="Name"
+                name="nombre"
+                label="Nombre Propiedad"
                 rules={[
                   {
                     required: true,
-                    message: 'Please house name',
+                    message: "Por favor, Ingresar el nombre de la propiedad",
                   },
                 ]}
               >
-                <Input id='name' defaultValue={credential.name} onChange={handleChange} placeholder="Please house name" />
+                <Input
+                  id="nombre"
+                  defaultValue={credential.nombre}
+                  onChange={handleChange}
+                  placeholder="Ingresar nombre de la propiedad"
+                />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item
-                name="adress"
-                label="Adress"
+                name="direccion"
+                label="Direccion"
                 rules={[
                   {
                     required: true,
-                    message: 'Please adress house',
+                    message: "Por favor, Ingresar direccion de la propiedad",
                   },
                 ]}
               >
-                <Input id='adress' defaultValue={credential.adress} onChange={handleChange} placeholder="Please adress house" />
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item
-                name="type"
-                label="Type"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Please select an type',
-                  },
-                ]}
-              >
-                <Select id='type' options={[
-                  {
-                    value: 'House',
-                    label: 'House',
-                  },
-                  {
-                    value: 'Aparment',
-                    label: 'Aparment',
-                  },
-                  {
-                    value: 'Others',
-                    label: 'Others',
-                  }]} onChange={handleType} placeholder="Please select type">
-
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                name="city"
-                label="City"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Please choose the type',
-                  },
-                ]}
-              >
-                <Input id='city' defaultValue={credential.city} onChange={handleChange} placeholder="Please city house" />
+                <Input
+                  id="direccion"
+                  defaultValue={credential.direccion}
+                  onChange={handleChange}
+                  placeholder="Ingresar direccion de la propiedad"
+                />
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={16}>
             <Col span={12}>
               <Form.Item
-                name="price"
-                label="Price"
+                name="tipo"
+                label="Tipo"
                 rules={[
                   {
                     required: true,
-                    message: 'Please house price',
+                    message: "Seleccionar tipo de propiedad",
                   },
                 ]}
               >
-                <Input id='price' value={credential.price} onChange={handleChange} placeholder="Please house price" />
+                <Select
+                  id="tipo"
+                  options={[
+                    {
+                      value: "Casa",
+                      label: "Casa",
+                    },
+                    {
+                      value: "Departamento",
+                      label: "Departamento",
+                    },
+                    {
+                      value: "Otros",
+                      label: "Otros",
+                    },
+                  ]}
+                  onChange={handleType}
+                  placeholder="Seleccionar tipo de Propiedad"
+                ></Select>
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item name="ciudad" label="Ciudad">
+                <Select
+                  id="ciudad"
+                  options={[
+                    {
+                      value: "Angol",
+                      label: "Angol",
+                    },
+                    {
+                      value: "Temuco",
+                      label: "Temuco",
+                    },
+                    {
+                      value: "Santiago",
+                      label: "Santiago",
+                    },
+                  ]}
+                  onChange={handleCity}
+                  placeholder="Selecciona ciudad"
+                ></Select>
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item
+                name="valor"
+                label="Valor"
+                rules={[
+                  {
+                    required: true,
+                    message: "Por Favor, Ingresar valor de la propiedad",
+                  },
+                ]}
+              >
+                <InputNumber
+                  id="valor"
+                  style={{ width: 300 }}
+                  value={credential.valor}
+                  onChange={handleNumber}
+                  placeholder="Ingresar valor de la propiedad"
+                  formatter={(value) =>
+                    `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  }
+                  parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+                />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item
                 name="featured"
-                label="Featured"
+                label="Visible"
                 rules={[
                   {
                     required: true,
-                    message: 'Please',
+                    message: "Please",
                   },
                 ]}
               >
-                <Switch id='featured' defaultChecked onChange={onChange} />
+                <Switch id="featured" defaultChecked onChange={onChange} />
               </Form.Item>
             </Col>
           </Row>
@@ -273,11 +354,17 @@ export const CreateAp = ({setLoad}) => {
                 rules={[
                   {
                     required: true,
-                    message: 'Please house baños',
+                    message: "Por favor, Ingresar cantidad de baños",
                   },
                 ]}
               >
-                <Input id='bano' value={credential.bano} onChange={handleChange} placeholder="Please house bano" />
+                <InputNumber
+                  id="bano"
+                  style={{ width: 300 }}
+                  value={credential.bano}
+                  onChange={handleBano}
+                  placeholder="Ingresar cantidad de baños"
+                />
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -287,11 +374,17 @@ export const CreateAp = ({setLoad}) => {
                 rules={[
                   {
                     required: true,
-                    message: 'Please house habitaciones',
+                    message: "Por favor, Ingresar cantidad de habitaciones",
                   },
                 ]}
               >
-                <Input id='habitaciones' value={credential.habitaciones} onChange={handleChange} placeholder="Please house habitaciones" />
+                <InputNumber
+                  id="habitaciones"
+                  style={{ width: 300 }}
+                  value={credential.habitaciones}
+                  onChange={handleRooms}
+                  placeholder="Ingresar cantidad de habitaciones"
+                />
               </Form.Item>
             </Col>
           </Row>
@@ -303,11 +396,14 @@ export const CreateAp = ({setLoad}) => {
                 rules={[
                   {
                     required: true,
-                    message: 'please upload photos',
+                    message: "please upload photos",
                   },
                 ]}
               >
-                <UploadImg fileList={fileList} handleFileList={handleFileList} />
+                <UploadImg
+                  fileList={fileList}
+                  handleFileList={handleFileList}
+                />
               </Form.Item>
             </Col>
           </Row>
@@ -315,20 +411,33 @@ export const CreateAp = ({setLoad}) => {
             <Col span={24}>
               <Form.Item
                 name="description"
-                label="Description"
+                label="Descripcion"
                 rules={[
                   {
                     required: true,
-                    message: 'please enter url description',
+                    message:
+                      "Por favor, Ingresar la descripcion de la propiedad",
                   },
                 ]}
               >
-                <Input.TextArea id='desc' value={credential.desc} onChange={handleChange} rows={4} placeholder="please enter description house" />
+                <Input.TextArea
+                  id="desc"
+                  value={credential.desc}
+                  onChange={handleChange}
+                  rows={4}
+                  placeholder="Ingresar descripcion de la propiedad"
+                />
               </Form.Item>
             </Col>
           </Row>
+          <div className="flex flex-col gap-2">
+            <h3>Seleccione ubicación</h3>
+            <div className="h-[50vh]">
+              <SelectUbication location={location} setLocation={setLocation} />
+            </div>
+          </div>
         </Form>
       </Drawer>
     </>
   );
-}
+};

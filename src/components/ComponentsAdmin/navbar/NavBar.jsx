@@ -1,61 +1,59 @@
 import "./navbar.css";
-import React, { useState } from 'react';
-import { HomeOutlined, DashboardOutlined, SettingOutlined } from '@ant-design/icons';
-import { Menu, Switch, Button } from 'antd';
-import { useSelector, useDispatch } from 'react-redux';
-import { logOut } from '../../../redux/slices/session-slice';
-import { Link } from 'react-router-dom';
-
-function getItem(label, key, icon, children, type) {
-  return {
-    key,
-    icon,
-    children,
-    label,
-    type,
-  };
-}
-
-const items = [
-  getItem('Inicio', 'sub1', <Link to={'/admin'}><DashboardOutlined /></Link>),
-  getItem(' Mis Propiedades', 'sub2', <Link to={'/admin/proiedades'}><HomeOutlined /></Link>),
-  getItem('Mis arrendatarios', 'sub4', <Link to={'/admin/arrendatarios'}> <SettingOutlined /> </Link>),
-];
-
+import { Button } from "antd";
+import { useSelector, useDispatch } from "react-redux";
+import { logOut } from "../../../redux/slices/session-slice";
+import { Link } from "react-router-dom";
+import { AiOutlineDashboard } from "react-icons/ai";
+import { IoHomeOutline } from "react-icons/io5";
+import { FaPerson } from "react-icons/fa6";
+import { IoPersonCircleOutline } from "react-icons/io5";
 
 export const NavBar = () => {
-
-  const { user } = useSelector(state => state.session);
+  const { user } = useSelector((state) => state.session);
   const dispatch = useDispatch();
   const logout = () => {
     dispatch(logOut());
     window.location.href = "/";
-
-  }
-
-
-  const [theme, setTheme] = useState('dark');
-  const [current, setCurrent] = useState('1');
-  const changeTheme = (value) => {
-    setTheme(value ? 'dark' : 'light');
-  };
-  const onClick = (e) => {
-    setCurrent(e.key);
   };
 
   return (
-    <div className='navBar'>
+    <div className="navBar">
       <div className="contNav">
-        <h1 className='titleNav'>Bienvenido {user.name} {user.lastname}</h1>
-        <Button className="btnAd" onClick={logout}>Cerrar Sesion</Button>
+        <IoPersonCircleOutline className="icons" />
+        <h1 className="titleNav navText">Bienvenido {user.name}</h1>
       </div>
+
+      <div className="navMenu">
+        <div className="dash">
+          <AiOutlineDashboard className="icons" />
+          <Link to={""}>
+            <span className="navText">Dashboard</span>
+          </Link>
+        </div>
+        <div className="dash">
+          <IoHomeOutline className="icons" />
+          <Link to={"propiedades"}>
+            <span className="navText">Mis Propiedades</span>
+          </Link>
+        </div>
+        <div className="dash">
+          <FaPerson className="icons" />
+          <Link to={"arrendatarios"}>
+            <span className="navText">Mis Arrendatarios</span>
+          </Link>
+        </div>
+      </div>
+      <Button className="btnAd" onClick={logout}>
+        Cerrar Sesion
+      </Button>
+
       {/* <Switch
         checked={theme === 'dark'}
         onChange={changeTheme}
         checkedChildren="Dark"
         unCheckedChildren="Light"
       /> */}
-
+      {/* 
       <Menu
         className="conteinerNav"
         theme={"light"}
@@ -68,7 +66,7 @@ export const NavBar = () => {
         selectedKeys={[current]}
         mode="inline"
         items={items}
-      />
+      /> */}
       {/* <h1 className='titleNav'>Bienvenido {user.username}</h1>
       <div className="conteinerNav">
         
@@ -77,5 +75,5 @@ export const NavBar = () => {
         <a href="" className='linkNav'>Mis Arrendatarios</a>
       </div> */}
     </div>
-  )
-}
+  );
+};

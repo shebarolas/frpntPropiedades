@@ -1,104 +1,112 @@
-.header{
-    background-color:#6b9795;
-    color: white;
-    display: grid;
-    justify-items: center;
+.header {
+  color: white;
+  /* display: grid;
+  justify-items: center; */
 }
-.headerContainer{
-    width: 100%;
-    max-width: 90rem;
-    margin-top: 2rem;
-    margin-bottom: 3rem; 
-    display: grid;
+.headerContainer {
+  width: 100%;
+  max-width: 90rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  display: grid;
 }
-.headerList{
-    display: grid;
-    grid-template-columns: 9rem 10rem;
-    gap: 3rem;
+.headerList {
+  display: grid;
+  grid-template-columns: 9rem 10rem;
+  gap: 3rem;
 }
-.headerListItem{
-    display: grid;
-    grid-template-columns: 1rem 1rem;
-    align-items: center;
-    padding: 1rem;
-    gap: 1rem;
-    font-size: 1.3rem;
-    border: 1px solid white;
-    border-radius: 1rem;
+.headerListItem {
+  display: grid;
+  grid-template-columns: 1rem 1rem;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+  font-size: 1.3rem;
+  border: 1px solid white;
+  border-radius: 1rem;
 }
-.headerListItemD{
-    display: grid;
-    grid-template-columns: 1rem 1rem;
-    align-items: center;
-    width: 11rem;
-    padding: 1rem;
-    gap: 1rem;
-    font-size: 1.3rem;
-    border: 1px solid white;
-    border-radius: 1rem;
+.headerListItemD {
+  display: grid;
+  grid-template-columns: 1rem 1rem;
+  align-items: center;
+  width: 11rem;
+  padding: 1rem;
+  gap: 1rem;
+  font-size: 1.3rem;
+  border: 1px solid white;
+  border-radius: 1rem;
 }
-.headerBtn{
-    width: 8rem;
-    height: 2.3rem;
-    background-color: #a0ab94;
-    color: white;
-    border-radius: .5rem;
-    cursor:  pointer;
+.headerBtn {
+  width: 8rem;
+  height: 2.3rem;
+  background-color: #a0ab94;
+  color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
-.headerTitle{
-    margin-top: 3rem;
-    margin-bottom: 0;
+.headerTitle {
+  margin-top: 3rem;
+  margin-bottom: 0;
 }
-.headerSearch{
-    height: 3.3rem;
-    background-color: white;
-    border: 2px solid #6b9795;
-    width: 100%;
-    max-width: 41rem;
-    display: grid;
-    gap: .2rem;
-    grid-template-columns: 1fr 1fr 1fr;
-    place-items: center;
-    color: black;
-    background-color: #6b9795;
-    margin-top: 1rem;
-    border-radius: .5rem;
-
+.headerSearch {
+  height: 3.3rem;
+  background-color: white;
+  border: 2px solid #6b9795;
+  width: 100%;
+  max-width: 41rem;
+  display: grid;
+  gap: 0.2rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  place-items: center;
+  color: black;
+  background-color: #6b9795;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
 }
 .headerSearchItem {
-    background-color: white;
-    height: 3rem;
-    width: 15rem;
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    place-items: center;
-    border-radius: .5rem;
-    margin-left: .1rem;
+  background-color: white;
+  height: 3rem;
+  width: 15rem;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  place-items: center;
+  border-radius: 0.5rem;
+  margin-left: 0.1rem;
 }
-.headerSearchInput{
-    border: none;
-    padding: 1rem;
-    border-radius: .5rem;
+.headerSearchInput {
+  border: none;
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
-.headerSearchInput:focus{
-    outline: none;
+.headerSearchInput:focus {
+  outline: none;
 }
-.headerSearchBtn{
-    width: 10rem;
-    height:3rem;
-    background-color: #a0ab94;
-    border: none;
-    color: white;
-    border-radius: .5rem;
-    cursor: pointer;
+.headerSearchBtn {
+  width: 10rem;
+  height: 3rem;
+  background-color: #a0ab94;
+  border: none;
+  color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
-.date{
-    position: absolute;
-    top: 27.8rem;
-    right:59.2rem;
-    z-index: 2;
+.date {
+  position: absolute;
+  top: 27.8rem;
+  right: 59.2rem;
+  z-index: 2;
 }
-.headerSearchTime{
-    width:13rem;
-    cursor: pointer;
+.headerSearchTime {
+  width: 13rem;
+  cursor: pointer;
+}
+
+.banner-gradient {
+  background: rgb(90, 178, 174);
+  background: linear-gradient(
+    180deg,
+    rgba(90, 178, 174, 1) 0%,
+    rgba(90, 178, 174, 0.8234943635657388) 33%,
+    rgba(90, 178, 174, 0.6526260162268032) 100%
+  );
 }

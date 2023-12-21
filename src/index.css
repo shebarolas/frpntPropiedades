@@ -1,8 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito&family=Open+Sans:ital@0;1&family=Permanent+Marker&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+@layer {
+  /* @import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito&family=Open+Sans:ital@0;1&family=Permanent+Marker&display=swap"); */
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 
-body{
-    margin: 0;
-    font-family: 'Nunito', sans-serif;
+  .ant-carousel {
+    width: 100% !important;
+  }
+
+  .ant-btn-primary {
+    background-color: rgb(90, 178, 174) !important;
+    color: white !important;
+  }
 }
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Nunito", sans-serif;
+  overflow-x: hidden;
+}
+
+.banner-gradient {
+  background: rgb(90, 178, 174);
+  background: linear-gradient(
+    180deg,
+    rgba(90, 178, 174, 1) 0%,
+    rgba(90, 178, 174, 0.8234943635657388) 33%,
+    rgba(90, 178, 174, 0.6526260162268032) 100%
+  );
+}
+
+.dark-gradient {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(199, 199, 199, 0) 52%,
+    rgba(0, 0, 0, 0.8234943635657388) 75%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}

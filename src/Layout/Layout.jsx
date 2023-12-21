@@ -1,17 +1,15 @@
-import React, { useEffect } from 'react'
-import { NavBar } from '../components/navbar/NavBar'
-import { Outlet } from 'react-router-dom'
-import { Header } from '../components/header/Header'
-import { Footer } from '../components/footer/Footer'
+import { Outlet } from "react-router-dom";
+import { Footer } from "../components/footer/Footer";
+import NavBar from "../components/navbar/NavBar";
 
 export const Layout = () => {
   return (
-    <>
-        <NavBar/>
-        <Header/>
-        <Outlet/>
-        <Footer/>
-    
-    </>
-  )
-}
+    <div className="flex flex-col">
+      <NavBar />
+      <div className="bg-gray-100">
+        <Outlet />
+      </div>
+      <Footer />
+    </div>
+  );
+};

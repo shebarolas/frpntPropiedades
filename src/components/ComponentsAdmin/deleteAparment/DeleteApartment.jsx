@@ -1,37 +1,37 @@
-import { QuestionCircleOutlined } from '@ant-design/icons';
-import React from 'react';
-import { Button, Popconfirm } from 'antd';
-import { instance } from '../../../config/axios';
+import { QuestionCircleOutlined } from "@ant-design/icons";
+import { Button, Popconfirm } from "antd";
+import { instance } from "../../../config/axios";
 
-export const DeleteApartment = ({data, setLoad}) => {
-
-    console.log(data);
-
-    const deleteClick = async(e) => {
-        e.preventDefault();
-        try {
-            console.log(data.user)
-            await instance.delete(`/hotel/delete/${data._id}`);
-            setLoad(true)
-        } catch (error) {
-            
-        }
+export const DeleteApartment = ({ data, setLoad }) => {
+  const deleteClick = async (e) => {
+    e.preventDefault();
+    try {
+      console.log(data.user);
+      await instance.delete(`/hotel/delete/${data._id}`);
+      setLoad(true);
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    return (
-        <Popconfirm
-            title="Delete the task"
-            description="Are you sure to delete this task?"
-            icon={
-                <QuestionCircleOutlined
-                    style={{
-                        color: 'red',
-                    }}
-                />
-            }
-            onConfirm={deleteClick}
-        >
-            <Button className='btnDelete' danger>Delete</Button>
-        </Popconfirm>
-    )
-}
+  return (
+    <Popconfirm
+      title="Eliminar Propiedad"
+      description="Estas seguro de querer eliminar la propiedad?"
+      icon={
+        <QuestionCircleOutlined
+          style={{
+            color: "red",
+          }}
+        />
+      }
+      onConfirm={deleteClick}
+      okText="Eliminar"
+      cancelText="Cancelar"
+    >
+      <Button className="btnDelete" danger>
+        Eliminar
+      </Button>
+    </Popconfirm>
+  );
+};

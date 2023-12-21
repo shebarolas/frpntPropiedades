@@ -1,0 +1,16 @@
+.banner {
+  position: relative;
+  background-color: #5ab2ae;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.video video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  object-fit: contain;
+}
