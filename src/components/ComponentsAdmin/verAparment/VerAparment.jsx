@@ -81,7 +81,7 @@ export const VerAparment = () => {
         onCancel={() => setModalOpen(false)}
         width={900}
         classNames={{
-          body: "h-[60vh] overflow-y-scroll",
+          body: "h-[70vh] overflow-y-scroll",
         }}
       >
         <ModalAdminPropiedad propiedad={selectPropiedad} />
