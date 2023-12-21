@@ -9,6 +9,7 @@ import { Payment } from "../pages/payment/Payment";
 import { Success } from "../pages/success/Success";
 import Search from "../pages/search/Search";
 import Agenda from "../pages/agenda/Agenda";
+import Profile from "../pages/profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "agenda",
         element: <Agenda />,
+      },
+      {
+        path: "perfil",
+        element: <Profile />,
       },
       {
         path: "*",

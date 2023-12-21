@@ -1,10 +1,14 @@
-import React from 'react'
-import { Dashboard } from '../../components/ComponentsAdmin/dashboard/Dashboard'
+import { Dashboard } from "../../components/ComponentsAdmin/dashboard/Dashboard";
+import Head from "../../components/ui/Head";
 
 export const InicioAdmin = () => {
   return (
-    <div>
-      <Dashboard/>
-    </div>
-  )
-}
+    <>
+      <Head title="Dashboard" />
+
+      <div>
+        <Dashboard />
+      </div>
+    </>
+  );
+};

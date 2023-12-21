@@ -19,8 +19,8 @@ const Header = () => {
   };
 
   return (
-    <div className="relative h-[60vh]">
-      <div className="flex justify-center items-center">
+    <div className="relative h-[60vh] flex items-center justify-center pb-20">
+      <div className="flex justify-center items-center z-20">
         <div className="max-w-7xl w-full flex flex-col gap-3 items-center">
           {/* btn */}
           <div className="flex items-center gap-4">
@@ -99,7 +99,7 @@ const Header = () => {
         src="https://cdn.pixabay.com/photo/2016/06/10/12/49/gallery-1448047_1280.jpg"
         className="absolute top-0 left-0 w-full h-full object-cover"
       /> */}
-      <div className="absolute top-0 left-0 w-full h-full -z-10">
+      <div className="absolute top-0 left-0 w-full h-full z-0">
         <video
           className="w-full h-full object-cover relative"
           autoPlay
