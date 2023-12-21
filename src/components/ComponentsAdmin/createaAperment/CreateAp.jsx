@@ -10,15 +10,12 @@ import {
   Select,
   Space,
   InputNumber,
+  notification 
 } from "antd";
 
-import { Switch } from "antd";
-import "./createApp.css";
-import { UploadImg } from "../uploadImg/UploadImg";
-import { instance } from "../../../config/axios";
 import { useSelector } from "react-redux";
-import { notification } from "antd";
-import SelectUbication from "../../ui/SelectUbication";
+import { useNavigate } from "react-router-dom";
+
 
 export const CreateAp = ({ setLoad }) => {
   const { user } = useSelector((state) => state.session);
@@ -98,6 +95,7 @@ export const CreateAp = ({ setLoad }) => {
   };
   const onClose = () => {
     setOpen(false);
+    setNulls('');
     setLoading(false);
   };
   const onChange = (checked) => {

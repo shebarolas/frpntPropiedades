@@ -5,13 +5,13 @@ import { API_URL } from "../../config/constants";
 import Spinner from "../../components/ui/Spinner";
 import PropiedadGallery from "../../components/propiedad/PropiedadGallery";
 import Head from "../../components/ui/Head";
-
 import { LuHome } from "react-icons/lu";
 import { MdLocationOn } from "react-icons/md";
 import { GrRestroom } from "react-icons/gr";
 import { MdOutlineBedroomParent } from "react-icons/md";
 import { PiFlowerTulipDuotone } from "react-icons/pi";
 import { CiWarning } from "react-icons/ci";
+import {useSelector} from 'react-redux';
 import Map from "../../components/ui/Map";
 
 import PropiedadAgenda from "../../components/propiedad/PropiedadAgenda";
