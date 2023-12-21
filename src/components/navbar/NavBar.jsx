@@ -29,7 +29,6 @@ const NavBar = () => {
         {/* navegation */}
         <div className="flex items-center gap-10">
           <CustomLink url={"/"} label="Inicio" />
-          <CustomLink url={"/payment"} label="Membresia" />
           {user ? (
             <Dropdown />
           ) : (
