@@ -3,6 +3,7 @@ import { diasFaltantes } from "../../utils/methods";
 import { CiUser, CiLocationOn } from "react-icons/ci";
 import moment from "moment";
 import Tag from "../ui/Tag";
+import { BsHousesFill } from "react-icons/bs";
 
 export default function TimelineItem({ agenda }) {
   console.log(agenda);
@@ -43,13 +44,22 @@ export default function TimelineItem({ agenda }) {
             </h2>
             <p>{agenda?.idPropiedad?.desc}</p>
           </div>
-        </div>
 
-        <div className="">
           <p className="text-xs flex items-center ">
             <CiLocationOn />
             <span className="underline">{`${agenda?.idPropiedad.ciudad}, ${agenda?.idPropiedad?.direccion}`}</span>
           </p>
+        </div>
+
+        <div className="">
+          <button
+            type="button"
+            className="px-4 py-1 bg-primary text-white rounded-md flex items-center gap-1 hover:bg-primary/80 transition-all duration-200 ease-out"
+            disabled
+          >
+            <BsHousesFill className="h-4 w-4" />
+            Arrendar
+          </button>
         </div>
       </div>
     </div>

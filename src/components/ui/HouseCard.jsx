@@ -23,7 +23,7 @@ export default function HouseCard({ property, onChangeLocation }) {
 
   return (
     <div
-      className="bg-white rounded-lg hover:cursor-pointer"
+      className="bg-white hover:cursor-pointer shadow-sm"
       onMouseEnter={() => {
         onChangeLocation({
           latitude: Number(property?.lat),
@@ -33,16 +33,16 @@ export default function HouseCard({ property, onChangeLocation }) {
       onClick={() => navigate(`/propiedad/${property?._id}`)}
     >
       {/* house image */}
-      <div className="h-64 rounded-lg overflow-hidden">
+      <div className="h-64 rounded-none overflow-hidden">
         <img
           alt="image"
           src={property?.photos[0]}
-          className="w-full h-full object-cover rounded-lg scale-100 transition-all duration-200 ease-out hover:scale-105"
+          className="w-full h-full object-cover scale-100 transition-all duration-200 ease-out hover:scale-105"
         />
       </div>
 
       {/* house info */}
-      <div className="py-2">
+      <div className="p-3">
         <div className="flex items-center justify-between">
           <p className="flex items-center text-xs m-0">
             <LuMapPin className="text-gray-400 w-4 h4" />

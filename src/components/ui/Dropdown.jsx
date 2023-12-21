@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../redux/slices/session-slice";
 
 import { CiUser } from "react-icons/ci";
-import { TiDocument } from "react-icons/ti";
+// import { TiDocument } from "react-icons/ti";
 import { MdCardMembership } from "react-icons/md";
+import { MdDashboard } from "react-icons/md";
 
 export default function Dropdown() {
   const { user } = useSelector((state) => state.session);
@@ -19,21 +20,30 @@ export default function Dropdown() {
     {
       key: "1",
       label: (
-        <Link to="#" className="flex items-center gap-1">
-          <CiUser />
-          Perfil
+        <Link to={"/admin"} className="flex items-center gap-1">
+          <MdDashboard />
+          Dashborad
         </Link>
       ),
     },
     {
       key: "2",
       label: (
-        <Link to="/agenda" className="flex items-center gap-1">
-          <TiDocument />
-          Mis horas
+        <Link to="/perfil" className="flex items-center gap-1">
+          <CiUser />
+          Perfil
         </Link>
       ),
     },
+    // {
+    //   key: "2",
+    //   label: (
+    //     <Link to="/agenda" className="flex items-center gap-1">
+    //       <TiDocument />
+    //       Mis horas
+    //     </Link>
+    //   ),
+    // },
     {
       key: "3",
       label: (
@@ -60,7 +70,12 @@ export default function Dropdown() {
       placement="bottomRight"
       arrow
     >
-      <button type="button" className="text-white flex items-center gap-1">
+      <button
+        type="button"
+        className={`${
+          location.pathname === "/" ? "text-white" : "text-black"
+        } flex items-center gap-1 border border-gray-200 rounded-full pl-3 pr-2 py-1`}
+      >
         <span className="text-sm">{`${user?.name} ${user?.lastname}`}</span>
         <div className="p-[2px] bg-black/5 rounded-full">
           <img
