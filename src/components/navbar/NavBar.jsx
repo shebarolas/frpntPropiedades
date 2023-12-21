@@ -1,60 +1,50 @@
 import "./navbar.css";
-import { Link } from "react-router-dom";
-import { Button } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import { logOut } from "../../redux/slices/session-slice";
+import { Link, useLocation } from "react-router-dom";
 import { MdOutlineAddHomeWork } from "react-icons/md";
+import logo from "../../assets/images/logo.png";
 
-import { MdCardMembership } from "react-icons/md";
 import Dropdown from "../ui/Dropdown";
+import CustomLink from "../ui/CustomLink";
+import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const { user } = useSelector((state) => state.session);
-  const dispatch = useDispatch();
-
-  const logout = () => {
-    dispatch(logOut());
-  };
+  const location = useLocation();
 
   return (
-    <div className="flex justify-center bg-primary">
+    <div
+      className={`flex justify-center ${
+        location.pathname === "/"
+          ? "bg-primary text-white shadow-none"
+          : "bg-white text-black border-b border-gray-200"
+      }`}
+    >
       <div className="max-w-7xl w-full h-20 flex justify-between items-center">
-        <Link to={"/"} className="decoration">
-          <h1 className="text-white font-bold uppercase">Arriendo</h1>
+        {/* logo */}
+        <Link to={"/"} className="decoration flex items-center">
+          <img alt="logo" src={logo} className="w-5 h-5 object-cover" />
+          <h1 className="font-bold lowercase">ChilePlace</h1>
         </Link>
-        {user && !user.isAdmin ? (
-          <Dropdown />
-        ) : user?.isAdmin ? (
-          <div className="navBu">
-            <span className="navText">
-              {user.name} {user.lastname}
-            </span>
-            <Link
-              to={"/admin"}
-              className="text-blac bg-white rounded-md text-sm py-2 px-4 flex items-center gap-1"
-            >
-              <MdCardMembership />
-              Dashborad
-            </Link>
-            <Button className="text-blac bg-white rounded-md text-sm py-2 px-4 flex items-center gap-1" onClick={logout}>Salir</Button>
-          </div>
-        ) : (
-          <div className="flex items-center gap-4">
-            <Link to={"/login"} className="text-white text-sm">
-              Iniciar Sessión
-            </Link>
-            <Link to={"/register"} className="text-white text-sm">
-              Crea tu cuenta
-            </Link>
-            <Link
-              to={"/register"}
-              className="text-blac bg-white rounded-md text-sm py-2 px-4 flex items-center gap-1"
-            >
-              <MdOutlineAddHomeWork />
-              Publica tu propiedad
-            </Link>
-          </div>
-        )}
+
+        {/* navegation */}
+        <div className="flex items-center gap-10">
+          <CustomLink url={"/"} label="Inicio" />
+          <CustomLink url={"/payment"} label="Membresia" />
+          {user ? (
+            <Dropdown />
+          ) : (
+            <div className="flex items-center gap-4">
+              <CustomLink url={"/login"} label="Iniciar Sesión" />
+              <Link
+                to={"/register"}
+                className="text-blac bg-white text-black rounded-md text-sm py-2 px-4 flex items-center gap-1"
+              >
+                <MdOutlineAddHomeWork />
+                Publica tu propiedad
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

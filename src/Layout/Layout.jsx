@@ -6,7 +6,9 @@ export const Layout = () => {
   return (
     <div className="flex flex-col">
       <NavBar />
-      <Outlet />
+      <div className="bg-gray-100">
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );
