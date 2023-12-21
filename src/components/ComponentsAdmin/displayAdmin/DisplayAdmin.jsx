@@ -8,8 +8,18 @@ import { Image } from "antd";
 import { Carousel } from "antd";
 import { formatPrice } from "../../../utils/methods";
 
-export const DisplayAdmin = ({ data, setLoad }) => {
+export const DisplayAdmin = ({
+  data,
+  setLoad,
+  setModalOpen,
+  setSelectPropiedad,
+}) => {
   const { photos } = data;
+
+  const handleOpenModal = () => {
+    setSelectPropiedad(data);
+    setModalOpen(true);
+  };
 
   return (
     <div className="w-full shadow border border-gray-20 rounded-md">
@@ -26,8 +36,8 @@ export const DisplayAdmin = ({ data, setLoad }) => {
             />
           ))}
         </Carousel>
-        <div className="px-4 pb-4">
-          <div>
+        <div className="px-4 pb-4 hover:cursor-pointer">
+          <div className="flex flex-col" onClick={handleOpenModal}>
             <h1 className="text-lg font-semibold">{data.nombre}</h1>
             <div className="disLocation">
               <IoLocationOutline />
