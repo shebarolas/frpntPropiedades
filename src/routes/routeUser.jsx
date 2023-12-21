@@ -10,6 +10,7 @@ import { Success } from "../pages/success/Success";
 import Search from "../pages/search/Search";
 import Agenda from "../pages/agenda/Agenda";
 import Profile from "../pages/profile/Profile";
+import Notfound from "../pages/Notfound";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,7 @@ const router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <div>Not Found</div>,
+        element: <Notfound />,
       },
     ],
   },

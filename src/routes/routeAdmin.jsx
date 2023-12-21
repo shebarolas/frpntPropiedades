@@ -9,6 +9,7 @@ import { Hotel } from "../pages/hotel/Hotel";
 import { HotelDisplay } from "../pages/hotelDisplay/HotelDisplay";
 import { ProbDash } from "../pages/ProbDash/ProbDash";
 import { Admin } from "../pages/admin/Admin";
+import Notfound from "../pages/Notfound";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <div>Not Found</div>,
+        element: <Notfound />,
       },
     ],
   },
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <div>Not Found</div>,
+    element: <Notfound />,
   },
   {
     path: "/probDash",
